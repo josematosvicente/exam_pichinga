@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Swagger Clientstore
+  description: A sample API that uses a clientstore as an example to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Swagger API Team
+    email: apiteam@swagger.io
+    url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://clientstore.swagger.io/api
+paths:
+  /clients:
+    get:
+      tags:
+        - CLIENT
+      summary: Returns all clients from the system that the user has access to
+      description: Returns all clients from the system that the user has access to
+      operationId: findClients
+      responses:
+        '200':
+          description: client response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - CLIENT
+      summary: Creates a new client in the store.  Duplicates are not allowed
+      description: Creates a new client in the store.  Duplicates are not allowed
+      operationId: addClient
+      requestBody:
+        description: Client to add to the store
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewClient'
+      responses:
+        '200':
+          description: client response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /clients/{id}:
+    get:
+      tags:
+        - CLIENT
+      summary: Returns a user based on a single ID, if the user does not have access to the client
+      description: Returns a user based on a single ID, if the user does not have access to the client
+      operationId: find client by id
+      parameters:
+        - name: id
+          in: path
+          description: ID of client to fetch
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: client response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - CLIENT
+      summary: deletes a single client based on the ID supplied
+      description: deletes a single client based on the ID supplied
+      operationId: deleteClient
+      parameters:
+        - name: id
+          in: path
+          description: ID of client to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: client deleted
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Client:
+      allOf:
+        - $ref: '#/components/schemas/NewClient'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: "string"
+
+    NewClient:
+      allOf:
+        - type: object
+          required:
+            - id
+          properties:
+            first_name:
+              type: "string"
+            last_name:
+              type: "string"
+            type:
+              type: "string"
+
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
