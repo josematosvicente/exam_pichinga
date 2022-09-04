@@ -15,6 +15,11 @@ se va avanzando en los proyectos, se irá ampliando en base a este mismo proyect
 ![Nivel 2 - Diagrama del contenedor!](/img/modelc4_2.svg)
 
 
+### Nivel 3 - Diagrama de componentes
+
+![Nivel 3 - Diagrama de componentes!](/img/modelc4_3.svg)
+
+
 ### Microservices - Client
 
 Contiene los microservicios relacionados con el mantenimiento (CRUD) de clientes:

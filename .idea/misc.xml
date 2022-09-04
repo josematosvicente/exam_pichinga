@@ -5,6 +5,10 @@
       <list>
         <option value="$PROJECT_DIR$/msvc-client/pom.xml" />
         <option value="$PROJECT_DIR$/msvc-account/pom.xml" />
+        <option value="$PROJECT_DIR$/msvc-financial/pom.xml" />
+        <option value="$PROJECT_DIR$/msvc-administrative/pom.xml" />
+        <option value="$PROJECT_DIR$/msvc-administrativo/pom.xml" />
+        <option value="$PROJECT_DIR$/msvc-administration/pom.xml" />
       </list>
     </option>
   </component>
