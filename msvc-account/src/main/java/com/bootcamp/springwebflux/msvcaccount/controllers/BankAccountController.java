@@ -27,13 +27,13 @@ public class BankAccountController {
     @GetMapping
     public Flux<BankAccountDto> getAll() {
         // return accountMapper.mapFluxToDto(bankAccountService.findAll());
-        return bankAccountService.findAll().map(t -> accountMapper.mapToViewModel(t));
+        return bankAccountService.findAll().map(t -> accountMapper.mapToDto(t));
     }
 
     @GetMapping("/{id}")
     public Mono<BankAccountDto> getId(@PathVariable String id) {
         return bankAccountService.findById(id)
-                .map(ba -> accountMapper.mapToViewModel(ba));
+                .map(ba -> accountMapper.mapToDto(ba));
     }
 
     @PostMapping
@@ -42,7 +42,7 @@ public class BankAccountController {
             bankAccount.setCreateAt(new Date());
         }
         return bankAccountService.save(bankAccount).map(ba -> 
-            accountMapper.mapToViewModel(ba));
+            accountMapper.mapToDto(ba));
     }
 
 

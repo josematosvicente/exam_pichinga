@@ -8,6 +8,6 @@ import com.bootcamp.springwebflux.msvcaccount.models.documents.BankAccount;
 @Mapper(componentModel = "spring")
 public interface AccountMapper {
 
-    BankAccountDto mapToViewModel(BankAccount value);
+    BankAccountDto mapToDto(BankAccount value);
 
 }
