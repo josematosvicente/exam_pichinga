@@ -4,7 +4,11 @@
     <file url="file://$PROJECT_DIR$/msvc-account/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msvc-account/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msvc-account/target/generated-sources/openapi/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/msvc-administrative/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/msvc-administrative/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msvc-client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msvc-client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/msvc-financial/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/msvc-financial/src/main/resources" charset="UTF-8" />
   </component>
 </project>
