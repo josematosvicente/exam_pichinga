@@ -20,7 +20,7 @@ public class MsvcClientApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		mongoTemplate.dropCollection("client").subscribe();
 
-		Flux.just(new Client("Juan","Perez","Titular"))
+		Flux.just(new Client("1","Juan","Perez","Titular"))
 				.flatMap(client -> {
 					return clientRepository.save(client);
 				})
