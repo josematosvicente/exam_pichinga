@@ -14,7 +14,7 @@ se va avanzando en los proyectos, se irá ampliando en base a este mismo proyect
 
 Contiene los microservicios relacionados con las cuentas y productos asociados al cliente:
 
-| Method | Path              | Description        |
-|--------|-------------------|--------------------|
-| POST    | /administrative/account | Listar Cliente     | 
-| POST    | /administrative/credit | Obtener Cliente    | 
+| Method | Path              | Description         |
+|--------|-------------------|---------------------|
+| POST    | /administrative/account | Registro de Cuentas | 
+| POST    | /administrative/credit | Registro de Creditos     | 
