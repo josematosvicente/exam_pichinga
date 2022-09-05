@@ -1,7 +1,7 @@
-package com.bootcamp.springwebflux.msvcadministration;
+package com.bootcamp.springwebflux.msvcproduct;
 
-import com.bootcamp.springwebflux.msvcadministration.models.documents.Account;
-import com.bootcamp.springwebflux.msvcadministration.repository.AccountRepository;
+import com.bootcamp.springwebflux.msvcproduct.models.documents.Product;
+import com.bootcamp.springwebflux.msvcproduct.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,17 +12,18 @@ import reactor.core.publisher.Flux;
 import java.util.Date;
 
 @SpringBootApplication
-public class MsvcAdministrationApplication implements CommandLineRunner {
+public class MsvcProductApplication implements CommandLineRunner {
 
 	@Autowired
-	private AccountRepository accountRepository;
+	private ProductRepository productRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		Flux.just(new Account("1","Juan","Perez"))
-				.flatMap(account -> {
-					return accountRepository.save(account);
+		Flux.just(new Product("1","Juan","Personal","Pasivo"
+						,0.0,10000.0,5000.0,4000.0,new Date()))
+				.flatMap(product -> {
+					return productRepository.save(product);
 				})
 				.subscribe();
 	}
@@ -32,7 +33,7 @@ public class MsvcAdministrationApplication implements CommandLineRunner {
 
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsvcAdministrationApplication.class, args);
+		SpringApplication.run(MsvcProductApplication.class, args);
 	}
 
 }
