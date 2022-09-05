@@ -1,17 +1,22 @@
-package com.bootcamp.springwebflux.msvcproduct.models.DTO;
+package com.msvc.specification.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.msvc.specification.api.dto.ClientDtoAllOf;
+import com.msvc.specification.api.dto.NewProductDto;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
+import org.openapitools.jackson.nullable.JsonNullable;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
- * NewProductAllOf
+ * ProductDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T11:02:22.008782100-05:00[America/Bogota]")
-public class NewProductAllOfDTO {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T15:04:05.966879900-05:00[America/Bogota]")
+public class ProductDto   {
   @JsonProperty("name")
   private String name;
 
@@ -33,7 +38,10 @@ public class NewProductAllOfDTO {
   @JsonProperty("line")
   private BigDecimal line;
 
-  public NewProductAllOfDTO name(String name) {
+  @JsonProperty("id")
+  private String id;
+
+  public ProductDto name(String name) {
     this.name = name;
     return this;
   }
@@ -53,7 +61,7 @@ public class NewProductAllOfDTO {
     this.name = name;
   }
 
-  public NewProductAllOfDTO type(String type) {
+  public ProductDto type(String type) {
     this.type = type;
     return this;
   }
@@ -73,7 +81,7 @@ public class NewProductAllOfDTO {
     this.type = type;
   }
 
-  public NewProductAllOfDTO category(String category) {
+  public ProductDto category(String category) {
     this.category = category;
     return this;
   }
@@ -93,7 +101,7 @@ public class NewProductAllOfDTO {
     this.category = category;
   }
 
-  public NewProductAllOfDTO commission(BigDecimal commission) {
+  public ProductDto commission(BigDecimal commission) {
     this.commission = commission;
     return this;
   }
@@ -114,7 +122,7 @@ public class NewProductAllOfDTO {
     this.commission = commission;
   }
 
-  public NewProductAllOfDTO limitDeposit(BigDecimal limitDeposit) {
+  public ProductDto limitDeposit(BigDecimal limitDeposit) {
     this.limitDeposit = limitDeposit;
     return this;
   }
@@ -135,7 +143,7 @@ public class NewProductAllOfDTO {
     this.limitDeposit = limitDeposit;
   }
 
-  public NewProductAllOfDTO limitWithdrawal(BigDecimal limitWithdrawal) {
+  public ProductDto limitWithdrawal(BigDecimal limitWithdrawal) {
     this.limitWithdrawal = limitWithdrawal;
     return this;
   }
@@ -156,7 +164,7 @@ public class NewProductAllOfDTO {
     this.limitWithdrawal = limitWithdrawal;
   }
 
-  public NewProductAllOfDTO line(BigDecimal line) {
+  public ProductDto line(BigDecimal line) {
     this.line = line;
     return this;
   }
@@ -177,6 +185,27 @@ public class NewProductAllOfDTO {
     this.line = line;
   }
 
+  public ProductDto id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -186,25 +215,26 @@ public class NewProductAllOfDTO {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewProductAllOfDTO newProductAllOf = (NewProductAllOfDTO) o;
-    return Objects.equals(this.name, newProductAllOf.name) &&
-        Objects.equals(this.type, newProductAllOf.type) &&
-        Objects.equals(this.category, newProductAllOf.category) &&
-        Objects.equals(this.commission, newProductAllOf.commission) &&
-        Objects.equals(this.limitDeposit, newProductAllOf.limitDeposit) &&
-        Objects.equals(this.limitWithdrawal, newProductAllOf.limitWithdrawal) &&
-        Objects.equals(this.line, newProductAllOf.line);
+    ProductDto productDto = (ProductDto) o;
+    return Objects.equals(this.name, productDto.name) &&
+        Objects.equals(this.type, productDto.type) &&
+        Objects.equals(this.category, productDto.category) &&
+        Objects.equals(this.commission, productDto.commission) &&
+        Objects.equals(this.limitDeposit, productDto.limitDeposit) &&
+        Objects.equals(this.limitWithdrawal, productDto.limitWithdrawal) &&
+        Objects.equals(this.line, productDto.line) &&
+        Objects.equals(this.id, productDto.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, type, category, commission, limitDeposit, limitWithdrawal, line);
+    return Objects.hash(name, type, category, commission, limitDeposit, limitWithdrawal, line, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NewProductAllOf {\n");
+    sb.append("class ProductDto {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
@@ -213,6 +243,7 @@ public class NewProductAllOfDTO {
     sb.append("    limitDeposit: ").append(toIndentedString(limitDeposit)).append("\n");
     sb.append("    limitWithdrawal: ").append(toIndentedString(limitWithdrawal)).append("\n");
     sb.append("    line: ").append(toIndentedString(line)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

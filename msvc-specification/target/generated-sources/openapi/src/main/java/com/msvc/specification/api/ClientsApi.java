@@ -6,7 +6,7 @@
 package com.msvc.specification.api;
 
 import com.msvc.specification.api.dto.ClientDto;
-import com.msvc.specification.api.dto.Error;
+import com.msvc.specification.api.dto.ErrorDto;
 import com.msvc.specification.api.dto.NewClientDto;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-04T16:54:06.796438600-05:00[America/Bogota]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T15:04:05.966879900-05:00[America/Bogota]")
 @Validated
 @Api(value = "clients", description = "the clients API")
 public interface ClientsApi {
@@ -41,7 +41,7 @@ public interface ClientsApi {
     @ApiOperation(value = "Creates a new client in the store.  Duplicates are not allowed", nickname = "addClient", notes = "Creates a new client in the store.  Duplicates are not allowed", response = ClientDto.class, tags={ "CLIENT", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "client response", response = ClientDto.class),
-        @ApiResponse(code = 200, message = "unexpected error", response = Error.class) })
+        @ApiResponse(code = 200, message = "unexpected error", response = ErrorDto.class) })
     @RequestMapping(
         method = RequestMethod.POST,
         value = "/clients",
@@ -62,7 +62,7 @@ public interface ClientsApi {
     @ApiOperation(value = "deletes a single client based on the ID supplied", nickname = "deleteClient", notes = "deletes a single client based on the ID supplied", tags={ "CLIENT", })
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "client deleted"),
-        @ApiResponse(code = 200, message = "unexpected error", response = Error.class) })
+        @ApiResponse(code = 200, message = "unexpected error", response = ErrorDto.class) })
     @RequestMapping(
         method = RequestMethod.DELETE,
         value = "/clients/{id}",
@@ -82,7 +82,7 @@ public interface ClientsApi {
     @ApiOperation(value = "Returns a user based on a single ID, if the user does not have access to the client", nickname = "findClientById", notes = "Returns a user based on a single ID, if the user does not have access to the client", response = ClientDto.class, tags={ "CLIENT", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "client response", response = ClientDto.class),
-        @ApiResponse(code = 200, message = "unexpected error", response = Error.class) })
+        @ApiResponse(code = 200, message = "unexpected error", response = ErrorDto.class) })
     @RequestMapping(
         method = RequestMethod.GET,
         value = "/clients/{id}",
@@ -101,12 +101,31 @@ public interface ClientsApi {
     @ApiOperation(value = "Returns all clients from the system that the user has access to", nickname = "findClients", notes = "Returns all clients from the system that the user has access to", response = ClientDto.class, responseContainer = "List", tags={ "CLIENT", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "client response", response = ClientDto.class, responseContainer = "List"),
-        @ApiResponse(code = 200, message = "unexpected error", response = Error.class) })
+        @ApiResponse(code = 200, message = "unexpected error", response = ErrorDto.class) })
     @RequestMapping(
         method = RequestMethod.GET,
         value = "/clients",
         produces = { "application/json" }
     )
     Mono<ResponseEntity<Flux<ClientDto>>> findClients(@springfox.documentation.annotations.ApiIgnore final ServerWebExchange exchange);
+
+
+    /**
+     * PUT /clients/{id} : Update client
+     * This can only be done by the logged in client.
+     *
+     * @param id ID of product to fetch (required)
+     * @param clientDto Update an existent product (optional)
+     * @return successful operation (status code 200)
+     */
+    @ApiOperation(value = "Update client", nickname = "updateClient", notes = "This can only be done by the logged in client.", tags={ "CLIENT", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation") })
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        value = "/clients/{id}",
+        consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }
+    )
+    Mono<ResponseEntity<Void>> updateClient(@ApiParam(value = "ID of product to fetch", required = true) @PathVariable("id") String id,@ApiParam(value = "Update an existent product") @Valid @RequestBody(required = false) Mono<ClientDto> clientDto, @springfox.documentation.annotations.ApiIgnore final ServerWebExchange exchange);
 
 }

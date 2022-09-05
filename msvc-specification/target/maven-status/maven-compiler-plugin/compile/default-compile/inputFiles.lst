@@ -1,6 +1,10 @@
-D:\BOTCAMP\WS\Bootcamp-Project-01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\Error.java
-D:\BOTCAMP\WS\Bootcamp-Project-01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\ClientDtoAllOf.java
-D:\BOTCAMP\WS\Bootcamp-Project-01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\ClientDto.java
-D:\BOTCAMP\WS\Bootcamp-Project-01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\NewClientDtoAllOf.java
-D:\BOTCAMP\WS\Bootcamp-Project-01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\NewClientDto.java
-D:\BOTCAMP\WS\Bootcamp-Project-01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\ClientsApi.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\ErrorDto.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\NewClientDtoAllOf.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\NewProductDtoAllOf.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\ProductDto.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\NewClientDto.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\ClientsApi.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\ClientDto.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\NewProductDto.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\ProductsApi.java
+C:\Users\iquinone\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Semana 01\Workspace\proyecto 01\msvc-specification\target\generated-sources\openapi\src\main\java\com\msvc\specification\api\dto\ClientDtoAllOf.java

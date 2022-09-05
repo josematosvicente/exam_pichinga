@@ -1,11 +1,8 @@
 package com.bootcamp.springwebflux.msvcadministration.services;
 
-import org.springframework.web.reactive.function.client.WebClient;
+import com.msvc.specification.api.dto.ProductDto;
+import reactor.core.publisher.Mono;
 
 public interface AdministrationAccountService {
-
-    WebClient webclient = WebClient.create("http://localhost:8080");
-
-
 
 }

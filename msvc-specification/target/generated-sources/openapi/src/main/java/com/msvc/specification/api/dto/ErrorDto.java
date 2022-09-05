@@ -10,14 +10,14 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Error
+ * ErrorDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-04T16:54:06.796438600-05:00[America/Bogota]")
-public class Error   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T15:04:05.966879900-05:00[America/Bogota]")
+public class ErrorDto   {
   @JsonProperty("message")
   private String message;
 
-  public Error message(String message) {
+  public ErrorDto message(String message) {
     this.message = message;
     return this;
   }
@@ -47,8 +47,8 @@ public class Error   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Error error = (Error) o;
-    return Objects.equals(this.message, error.message);
+    ErrorDto errorDto = (ErrorDto) o;
+    return Objects.equals(this.message, errorDto.message);
   }
 
   @Override
@@ -59,7 +59,7 @@ public class Error   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Error {\n");
+    sb.append("class ErrorDto {\n");
     
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");

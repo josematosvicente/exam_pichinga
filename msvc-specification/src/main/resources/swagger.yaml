@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Swagger Clientstore
-  description: A sample API that uses a clientstore as an example to demonstrate features in the OpenAPI 3.0 specification
+  title: Swagger Microservices Bank
+  description: Microservices Bank
   termsOfService: http://swagger.io/terms/
   contact:
     name: Swagger API Team
@@ -35,7 +35,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorDto'
     post:
       tags:
         - CLIENT
@@ -61,7 +61,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorDto'
   /clients/{id}:
     get:
       tags:
@@ -88,7 +88,35 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorDto'
+    put:
+      tags:
+        - CLIENT
+      summary: Update client
+      description: This can only be done by the logged in client.
+      operationId: updateClient
+      parameters:
+        - name: id
+          in: path
+          description: ID of product to fetch
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent product
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ClientDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ClientDto'
+      responses:
+        default:
+          description: successful operation
     delete:
       tags:
         - CLIENT
@@ -110,7 +138,133 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorDto'
+
+  /products:
+    get:
+      tags:
+        - PRODUCT
+      summary: Returns all products from the system that the user has access to
+      description: Returns all products from the system that the user has access to
+      operationId: findProducts
+      responses:
+        '200':
+          description: Product response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDto'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+    post:
+      tags:
+        - PRODUCT
+      summary: Creates a new product in the store.  Duplicates are not allowed
+      description: Creates a new product in the store.  Duplicates are not allowed
+      operationId: addProduct
+      requestBody:
+        description: Product to add to the store
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewProductDto'
+      responses:
+        '200':
+          description: product response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /products/{id}:
+    get:
+      tags:
+        - PRODUCT
+      summary: Returns a product based on a single ID
+      description: Returns a product based on a single ID
+      operationId: find product by id
+      parameters:
+        - name: id
+          in: path
+          description: ID of product to fetch
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: product response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+    put:
+      tags:
+        - PRODUCT
+      summary: Update product
+      description: This can only be done by the logged in product.
+      operationId: updateProduct
+      parameters:
+        - name: id
+          in: path
+          description: ID of product to fetch
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent product
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+      responses:
+        default:
+          description: successful operation
+    delete:
+      tags:
+        - PRODUCT
+      summary: deletes a single product based on the ID supplied
+      description: deletes a single product based on the ID supplied
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          description: ID of product to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: product deleted
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
 components:
   schemas:
     ClientDto:
@@ -135,8 +289,38 @@ components:
               type: "string"
             type:
               type: "string"
+    ProductDto:
+      allOf:
+        - $ref: '#/components/schemas/NewProductDto'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: "string"
 
-    Error:
+    NewProductDto:
+      allOf:
+        - type: object
+          required:
+            - id
+          properties:
+            name:
+              type: "string"
+            type:
+              type: "string"
+            category:
+              type: "string"
+            commission:
+              type: "number"
+            limitDeposit:
+              type: "number"
+            limitWithdrawal:
+              type: "number"
+            line:
+              type: "number"
+
+    ErrorDto:
       type: object
       required:
         - message

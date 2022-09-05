@@ -59,4 +59,9 @@ public class ClientController implements ClientsApi {
                 .body(clientService.findAll().map(mapper::toDto)));
     }
 
+    @Override
+    public Mono<ResponseEntity<Void>> updateClient(String id, Mono<ClientDto> clientDto, ServerWebExchange exchange) {
+        return null;
+    }
+
 }
