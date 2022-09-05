@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Swagger Clientstore
+  title: Swagger Product
   description: A sample API that uses a clientstore as an example to demonstrate features in the OpenAPI 3.0 specification
   termsOfService: http://swagger.io/terms/
   contact:
@@ -14,22 +14,22 @@ info:
 servers:
   - url: http://clientstore.swagger.io/api
 paths:
-  /clients:
+  /products:
     get:
       tags:
-        - CLIENT
-      summary: Returns all clients from the system that the user has access to
-      description: Returns all clients from the system that the user has access to
-      operationId: findClients
+        - PRODUCT
+      summary: Returns all products from the system that the user has access to
+      description: Returns all products from the system that the user has access to
+      operationId: findProducts
       responses:
         '200':
-          description: client response
+          description: Product response
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Client'
+                  $ref: '#/components/schemas/Product'
         default:
           description: unexpected error
           content:
@@ -38,75 +38,103 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       tags:
-        - CLIENT
-      summary: Creates a new client in the store.  Duplicates are not allowed
-      description: Creates a new client in the store.  Duplicates are not allowed
-      operationId: addClient
+        - PRODUCT
+      summary: Creates a new product in the store.  Duplicates are not allowed
+      description: Creates a new product in the store.  Duplicates are not allowed
+      operationId: addProduct
       requestBody:
-        description: Client to add to the store
+        description: Product to add to the store
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewClient'
+              $ref: '#/components/schemas/NewProduct'
       responses:
         '200':
-          description: client response
+          description: product response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Client'
+                $ref: '#/components/schemas/Product'
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /clients/{id}:
+  /products/{id}:
     get:
       tags:
-        - CLIENT
-      summary: Returns a user based on a single ID, if the user does not have access to the client
-      description: Returns a user based on a single ID, if the user does not have access to the client
-      operationId: find client by id
+        - PRODUCT
+      summary: Returns a product based on a single ID
+      description: Returns a product based on a single ID
+      operationId: find product by id
       parameters:
         - name: id
           in: path
-          description: ID of client to fetch
+          description: ID of product to fetch
           required: true
           schema:
             type: integer
             format: int64
       responses:
         '200':
-          description: client response
+          description: product response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Client'
+                $ref: '#/components/schemas/Product'
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-    delete:
+    put:
       tags:
-        - CLIENT
-      summary: deletes a single client based on the ID supplied
-      description: deletes a single client based on the ID supplied
-      operationId: deleteClient
+        - PRODUCT
+      summary: Update product
+      description: This can only be done by the logged in product.
+      operationId: updateProduct
       parameters:
         - name: id
           in: path
-          description: ID of client to delete
+          description: ID of product to fetch
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent product
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        default:
+          description: successful operation
+    delete:
+      tags:
+        - PRODUCT
+      summary: deletes a single product based on the ID supplied
+      description: deletes a single product based on the ID supplied
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          description: ID of product to delete
           required: true
           schema:
             type: integer
             format: int64
       responses:
         '204':
-          description: client deleted
+          description: product deleted
         default:
           description: unexpected error
           content:
@@ -115,9 +143,9 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Client:
+    Product:
       allOf:
-        - $ref: '#/components/schemas/NewClient'
+        - $ref: '#/components/schemas/NewProduct'
         - type: object
           required:
             - id
@@ -125,18 +153,26 @@ components:
             id:
               type: "string"
 
-    NewClient:
+    NewProduct:
       allOf:
         - type: object
           required:
             - id
           properties:
-            first_name:
-              type: "string"
-            last_name:
+            name:
               type: "string"
             type:
               type: "string"
+            category:
+              type: "string"
+            commission:
+              type: "number"
+            limitDeposit:
+              type: "number"
+            limitWithdrawal:
+              type: "number"
+            line:
+              type: "number"
 
     Error:
       type: object

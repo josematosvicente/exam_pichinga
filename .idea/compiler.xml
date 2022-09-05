@@ -20,9 +20,7 @@
         </processorPath>
         <module name="msvc-financial" />
         <module name="msvc-account" />
-        <module name="msvc-administration" />
         <module name="msvc-client" />
-        <module name="msvc-product" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
