@@ -7,17 +7,17 @@ se va avanzando en los proyectos, se irá ampliando en base a este mismo proyect
 
 ### Nivel 3 - Diagrama de componentes
 
-![Nivel 3 - Diagrama de componentes!](../img/modelc4_3_1.svg)
+![Nivel 3 - Diagrama de componentes!](../img/modelc4_3_4.svg)
 
 
-### Microservices - Client
+### Microservices - Product
 
-Contiene los microservicios relacionados con el mantenimiento (CRUD) de clientes:
+Contiene los microservicios relacionados con el mantenimiento (CRUD) de Productos:
 
 | Method | Path              | Description        |
 |--------|-------------------|--------------------|
-| GET    | /clients/{id}  | Listar Cliente     | 
-| GET    | /clients | Obtener Cliente    | 
-| POST   | /clients | Crear Cliente | 
-| PUT    | /clients/{id}  | Actualizar Cliente | 
-| DELETE | /clients/{id}  | Eliminar Cliente |
+| GET    | /products/{id}  | Listar Producto     | 
+| GET    | /products | Obtener Producto    | 
+| POST   | /products | Crear Producto | 
+| PUT    | /products/{id}  | Actualizar Producto | 
+| DELETE | /products/{id}  | Eliminar Producto |

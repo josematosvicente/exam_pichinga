@@ -1,20 +1,23 @@
-package com.bootcamp.springwebflux.msvcproduct.models.DTO;
+package com.msvc.specification.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
- * ProductAllOf
+ * ClientDtoAllOf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T11:02:22.008782100-05:00[America/Bogota]")
-public class ProductAllOfDTO {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T21:47:26.688851100-05:00[America/Bogota]")
+public class ClientDtoAllOf   {
   @JsonProperty("id")
   private String id;
 
-  public ProductAllOfDTO id(String id) {
+  public ClientDtoAllOf id(String id) {
     this.id = id;
     return this;
   }
@@ -44,8 +47,8 @@ public class ProductAllOfDTO {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProductAllOfDTO productAllOf = (ProductAllOfDTO) o;
-    return Objects.equals(this.id, productAllOf.id);
+    ClientDtoAllOf clientDtoAllOf = (ClientDtoAllOf) o;
+    return Objects.equals(this.id, clientDtoAllOf.id);
   }
 
   @Override
@@ -56,7 +59,7 @@ public class ProductAllOfDTO {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProductAllOf {\n");
+    sb.append("class ClientDtoAllOf {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");

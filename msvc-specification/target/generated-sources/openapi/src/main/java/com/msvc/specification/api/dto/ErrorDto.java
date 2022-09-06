@@ -1,20 +1,23 @@
-package com.bootcamp.springwebflux.msvcproduct.models.DTO;
+package com.msvc.specification.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
- * Error
+ * ErrorDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T11:02:22.008782100-05:00[America/Bogota]")
-public class ErrorDTO {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T21:47:26.688851100-05:00[America/Bogota]")
+public class ErrorDto   {
   @JsonProperty("message")
   private String message;
 
-  public ErrorDTO message(String message) {
+  public ErrorDto message(String message) {
     this.message = message;
     return this;
   }
@@ -44,8 +47,8 @@ public class ErrorDTO {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorDTO error = (ErrorDTO) o;
-    return Objects.equals(this.message, error.message);
+    ErrorDto errorDto = (ErrorDto) o;
+    return Objects.equals(this.message, errorDto.message);
   }
 
   @Override
@@ -56,7 +59,7 @@ public class ErrorDTO {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Error {\n");
+    sb.append("class ErrorDto {\n");
     
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");

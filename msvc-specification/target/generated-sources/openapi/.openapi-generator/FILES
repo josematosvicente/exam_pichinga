@@ -1,0 +1,15 @@
+src/main/java/com/msvc/specification/api/ClientsApi.java
+src/main/java/com/msvc/specification/api/FinantialApi.java
+src/main/java/com/msvc/specification/api/ProductsApi.java
+src/main/java/com/msvc/specification/api/dto/AccountDto.java
+src/main/java/com/msvc/specification/api/dto/AccountDtoAllOf.java
+src/main/java/com/msvc/specification/api/dto/ClientDto.java
+src/main/java/com/msvc/specification/api/dto/ClientDtoAllOf.java
+src/main/java/com/msvc/specification/api/dto/ErrorDto.java
+src/main/java/com/msvc/specification/api/dto/MovementDto.java
+src/main/java/com/msvc/specification/api/dto/MovementDtoAllOf.java
+src/main/java/com/msvc/specification/api/dto/NewClientDto.java
+src/main/java/com/msvc/specification/api/dto/NewClientDtoAllOf.java
+src/main/java/com/msvc/specification/api/dto/NewProductDto.java
+src/main/java/com/msvc/specification/api/dto/NewProductDtoAllOf.java
+src/main/java/com/msvc/specification/api/dto/ProductDto.java
