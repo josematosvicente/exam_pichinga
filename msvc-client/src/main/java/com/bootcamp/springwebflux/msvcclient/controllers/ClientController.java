@@ -31,7 +31,7 @@ public class ClientController implements ClientsApi {
     public Mono<ResponseEntity<ClientDto>> addClient(Mono<NewClientDto> newClient, ServerWebExchange exchange) {
         return newClient.flatMap(newClientDTO -> clientService.save(mapper.toModel(newClientDTO)))
                 .map(client ->
-                        ResponseEntity.created(URI.create("/api/client/".concat(client.getId())))
+                        ResponseEntity.created(URI.create("/api/clients/".concat(client.getId())))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .body(mapper.toDto(client)));
 

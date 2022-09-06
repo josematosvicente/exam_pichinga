@@ -13,6 +13,8 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
+
 @RestController
 public class ProductController implements ProductsApi {
 
@@ -24,7 +26,12 @@ public class ProductController implements ProductsApi {
 
     @Override
     public Mono<ResponseEntity<ProductDto>> addProduct(Mono<NewProductDto> newProduct, ServerWebExchange exchange) {
-        return null;
+        return newProduct.flatMap(newClientDTO -> productService.save(productMapper.toModel(newClientDTO)))
+                .map(client ->
+                        ResponseEntity.created(URI.create("/api/products/".concat(client.getId())))
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(productMapper.toDto(client)));
+
     }
 
     @Override

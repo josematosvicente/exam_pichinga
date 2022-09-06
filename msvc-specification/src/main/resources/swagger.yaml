@@ -39,11 +39,11 @@ paths:
     post:
       tags:
         - CLIENT
-      summary: Creates a new client in the store.  Duplicates are not allowed
-      description: Creates a new client in the store.  Duplicates are not allowed
+      summary: Creates a new client in the bank.  Duplicates are not allowed
+      description: Creates a new client in the bank.  Duplicates are not allowed
       operationId: addClient
       requestBody:
-        description: ClientDto to add to the store
+        description: ClientDto to add to the bank
         required: true
         content:
           application/json:
@@ -165,8 +165,8 @@ paths:
     post:
       tags:
         - PRODUCT
-      summary: Creates a new product in the store.  Duplicates are not allowed
-      description: Creates a new product in the store.  Duplicates are not allowed
+      summary: Creates a new product in the bank.  Duplicates are not allowed
+      description: Creates a new product in the bank.  Duplicates are not allowed
       operationId: addProduct
       requestBody:
         description: Product to add to the store
@@ -265,6 +265,259 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorDto'
+
+  /administrative/accounts:
+    get:
+      tags:
+        - ADMINISTRATIVE
+      summary: Returns all accounts of bank
+      description: Returns all accounts of bank
+      operationId: findAccounts
+      responses:
+        '200':
+          description: Account response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdministrativeAccountDto'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+    post:
+      tags:
+        - ADMINISTRATIVE
+      summary: Creates a new account in the bank.  Duplicates are not allowed
+      description: Creates a new account in the bank.  Duplicates are not allowed
+      operationId: addAccount
+      requestBody:
+        description: Account to add to the bank
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewAdministrativeAccountDto'
+      responses:
+        '200':
+          description: account response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdministrativeAccountDto'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /administrative/accounts/{id}:
+    get:
+      tags:
+        - ADMINISTRATIVE
+      summary: Returns a account based on a single ID
+      description: Returns a account based on a single ID
+      operationId: find account by id
+      parameters:
+        - name: id
+          in: path
+          description: ID of account to fetch
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: account response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdministrativeAccountDto'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+    put:
+      tags:
+        - ADMINISTRATIVE
+      summary: Update account
+      description: This can only be done by the logged in account.
+      operationId: updateAccount
+      parameters:
+        - name: id
+          in: path
+          description: ID of account to fetch
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent account
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdministrativeAccountDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AdministrativeAccountDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdministrativeAccountDto'
+      responses:
+        default:
+          description: successful operation
+    delete:
+      tags:
+        - ADMINISTRATIVE
+      summary: deletes a single account based on the ID supplied
+      description: deletes a single account based on the ID supplied
+      operationId: deleteAccount
+      parameters:
+        - name: id
+          in: path
+          description: ID of account to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: account deleted
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+
+  /administrative/credit:
+    get:
+      tags:
+        - ADMINISTRATIVE
+      summary: Returns all credits from the system bank
+      description: Returns all credits from the system bank
+      operationId: findCredits
+      responses:
+        '200':
+          description: Credit response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreditDto'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+    post:
+      tags:
+        - ADMINISTRATIVE
+      summary: Creates a new credit in the bank.  Duplicates are not allowed
+      description: Creates a new credit in the bank.  Duplicates are not allowed
+      operationId: addCredit
+      requestBody:
+        description: Credit to add to the bank
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCreditDto'
+      responses:
+        '200':
+          description: credit response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditDto'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+  /administrative/credit/{id}:
+    get:
+      tags:
+        - ADMINISTRATIVE
+      summary: Returns a credit based on a single ID
+      description: Returns a credit based on a single ID
+      operationId: find credit by id
+      parameters:
+        - name: id
+          in: path
+          description: ID of credit to fetch
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: credit response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditDto'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+    put:
+      tags:
+        - ADMINISTRATIVE
+      summary: Update credit
+      description: This can only be done by the logged in credit.
+      operationId: updateCredit
+      parameters:
+        - name: id
+          in: path
+          description: ID of credit to fetch
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent credit
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreditDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreditDto'
+      responses:
+        default:
+          description: successful operation
+    delete:
+      tags:
+        - ADMINISTRATIVE
+      summary: deletes a single credit based on the ID supplied
+      description: deletes a single credit based on the ID supplied
+      operationId: deleteCredit
+      parameters:
+        - name: id
+          in: path
+          description: ID of credit to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: credit deleted
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+
   /finantial/account/{id}/movement:
     post:
       tags:
@@ -480,6 +733,92 @@ components:
               type: "object"
             balance:
               type: "number"
+
+    AccountProductDto:
+      allOf:
+        - type: object
+          required:
+            - id
+          properties:
+            name:
+              type: "string"
+            type:
+              type: "string"
+            category:
+              type: "string"
+            commission:
+              type: "number"
+            limitDeposit:
+              type: "number"
+            limitWithdrawal:
+              type: "number"
+            balance:
+              type: "number"
+
+    CreditProductDto:
+      allOf:
+        - type: object
+          required:
+            - id
+          properties:
+            name:
+              type: "string"
+            type:
+              type: "string"
+            category:
+              type: "string"
+            line:
+              type: "number"
+
+    AdministrativeAccountDto:
+      allOf:
+        - $ref: '#/components/schemas/NewAdministrativeAccountDto'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: "string"
+
+    NewAdministrativeAccountDto:
+      allOf:
+        - type: object
+          required:
+            - id
+          properties:
+            clientList:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/NewClientDto"
+            accountProductList:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/AccountProductDto"
+    CreditDto:
+      allOf:
+        - $ref: '#/components/schemas/NewCreditDto'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: "string"
+
+    NewCreditDto:
+      allOf:
+        - type: object
+          required:
+            - id
+          properties:
+            clientList:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/NewClientDto"
+            creditProductList:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/CreditProductDto"
+
     ErrorDto:
       type: object
       required:
