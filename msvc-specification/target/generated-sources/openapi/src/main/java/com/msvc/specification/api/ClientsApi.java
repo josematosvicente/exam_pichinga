@@ -25,20 +25,20 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T21:52:13.271485400-05:00[America/Bogota]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-06T18:16:27.790586600-05:00[America/Lima]")
 @Validated
 @Api(value = "clients", description = "the clients API")
 public interface ClientsApi {
 
     /**
-     * POST /clients : Creates a new client in the store.  Duplicates are not allowed
-     * Creates a new client in the store.  Duplicates are not allowed
+     * POST /clients : Creates a new client in the bank.  Duplicates are not allowed
+     * Creates a new client in the bank.  Duplicates are not allowed
      *
-     * @param newClientDto ClientDto to add to the store (required)
+     * @param newClientDto ClientDto to add to the bank (required)
      * @return client response (status code 200)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Creates a new client in the store.  Duplicates are not allowed", nickname = "addClient", notes = "Creates a new client in the store.  Duplicates are not allowed", response = ClientDto.class, tags={ "CLIENT", })
+    @ApiOperation(value = "Creates a new client in the bank.  Duplicates are not allowed", nickname = "addClient", notes = "Creates a new client in the bank.  Duplicates are not allowed", response = ClientDto.class, tags={ "CLIENT", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "client response", response = ClientDto.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorDto.class) })
@@ -48,7 +48,7 @@ public interface ClientsApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    Mono<ResponseEntity<ClientDto>> addClient(@ApiParam(value = "ClientDto to add to the store", required = true) @Valid @RequestBody Mono<NewClientDto> newClientDto, @springfox.documentation.annotations.ApiIgnore final ServerWebExchange exchange);
+    Mono<ResponseEntity<ClientDto>> addClient(@ApiParam(value = "ClientDto to add to the bank", required = true) @Valid @RequestBody Mono<NewClientDto> newClientDto, @springfox.documentation.annotations.ApiIgnore final ServerWebExchange exchange);
 
 
     /**

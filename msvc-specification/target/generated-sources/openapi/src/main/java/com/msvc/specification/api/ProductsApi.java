@@ -25,20 +25,20 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T21:52:13.271485400-05:00[America/Bogota]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-06T18:16:27.790586600-05:00[America/Lima]")
 @Validated
 @Api(value = "products", description = "the products API")
 public interface ProductsApi {
 
     /**
-     * POST /products : Creates a new product in the store.  Duplicates are not allowed
-     * Creates a new product in the store.  Duplicates are not allowed
+     * POST /products : Creates a new product in the bank.  Duplicates are not allowed
+     * Creates a new product in the bank.  Duplicates are not allowed
      *
      * @param newProductDto Product to add to the store (required)
      * @return product response (status code 200)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Creates a new product in the store.  Duplicates are not allowed", nickname = "addProduct", notes = "Creates a new product in the store.  Duplicates are not allowed", response = ProductDto.class, tags={ "PRODUCT", })
+    @ApiOperation(value = "Creates a new product in the bank.  Duplicates are not allowed", nickname = "addProduct", notes = "Creates a new product in the bank.  Duplicates are not allowed", response = ProductDto.class, tags={ "PRODUCT", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "product response", response = ProductDto.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorDto.class) })

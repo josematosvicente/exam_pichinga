@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * ClientDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-05T21:52:13.271485400-05:00[America/Bogota]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-06T18:16:27.790586600-05:00[America/Lima]")
 public class ClientDto   {
   @JsonProperty("first_name")
   private String firstName;
