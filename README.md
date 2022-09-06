@@ -36,10 +36,20 @@ Contiene los microservicios relacionados con el mantenimiento (CRUD) de clientes
 
 Contiene los microservicios relacionados con las cuentas y productos asociados al cliente:
 
-| Method | Path              | Description        |
-|--------|-------------------|--------------------|
-| POST    | /administrative/account | Listar Cliente     | 
-| POST    | /administrative/credit | Obtener Cliente    | 
+
+| Method    | Path              | Description                                      |
+|-----------|-------------------|--------------------------------------------------|
+| GET       | /administrative/account | Obtener Cuentas de todos los Clientes            |
+| POST      | /administrative/account | Registro de Cuentas                              | 
+| GET       | /administrative/account/{id} | Obtener Cuentas del Cliente                      |
+| PUT       | /administrative/account/{id} | Actualización de Cuenta del Cliente              | 
+| DELETE    | /administrative/account/{id} | Elimina una cuenta del Cliente                   |
+| GET       | /administrative/credit | Obtener todos los Créditos de todos los Clientes | 
+| POST      | /administrative/credit | Registro de Créditos                             | 
+| GET       | /administrative/credit/{id} | Obtener Créditos del Cliente                     |
+| PUT       | /administrative/credit/{id} | Actualización de Créditos del Cliente           |
+| DELETE    | /administrative/credit/{id} | Elimina el Créditos del Cliente                  |
+
 
 ### Microservices - Financial
 
