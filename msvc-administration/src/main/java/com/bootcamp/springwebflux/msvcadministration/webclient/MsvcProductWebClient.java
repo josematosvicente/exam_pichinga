@@ -1,6 +1,7 @@
 package com.bootcamp.springwebflux.msvcadministration.webclient;
 
 import com.bootcamp.springwebflux.msvcadministration.services.AdministrationAccountService;
+import com.msvc.specification.api.dto.NewProductDto;
 import com.msvc.specification.api.dto.ProductDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,11 +10,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Service
-public class MsvcProductClient {
+public class MsvcProductWebClient {
 
-    Logger logger = LoggerFactory.getLogger(AdministrationAccountService.class);
+    Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
 
-    WebClient webclient = WebClient.create("http://localhost:8080");
+    WebClient webclient = WebClient.create("http://localhost:8083");
 
     public Mono<ProductDto> getProduct(String id) {
         logger.info(String.format("Calling getProduct (%s)", id));
@@ -23,4 +24,15 @@ public class MsvcProductClient {
                 .retrieve()
                 .bodyToMono(ProductDto.class);
     }
+
+    public Mono<ProductDto> postProduct(NewProductDto newProductDto) {
+        logger.info(String.format("Calling postProduct (%s)", newProductDto));
+
+        return webclient.post()
+                .uri("/products")
+                .body(Mono.just(newProductDto), NewProductDto.class)
+                .retrieve()
+                .bodyToMono(ProductDto.class);
+    }
+
 }

@@ -736,6 +736,16 @@ components:
 
     AccountProductDto:
       allOf:
+        - $ref: '#/components/schemas/NewAccountProductDto'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: "string"
+
+    NewAccountProductDto:
+      allOf:
         - type: object
           required:
             - id
@@ -757,6 +767,16 @@ components:
 
     CreditProductDto:
       allOf:
+        - $ref: '#/components/schemas/NewCreditProductDto'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: "string"
+
+    NewCreditProductDto:
+      allOf:
         - type: object
           required:
             - id
@@ -772,13 +792,20 @@ components:
 
     AdministrativeAccountDto:
       allOf:
-        - $ref: '#/components/schemas/NewAdministrativeAccountDto'
         - type: object
           required:
             - id
           properties:
             id:
               type: "string"
+            clientList:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/ClientDto"
+            accountProductList:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/AccountProductDto"
 
     NewAdministrativeAccountDto:
       allOf:
@@ -793,16 +820,22 @@ components:
             accountProductList:
               type: "array"
               items:
-                $ref: "#/components/schemas/AccountProductDto"
+                $ref: "#/components/schemas/NewAccountProductDto"
+
     CreditDto:
       allOf:
-        - $ref: '#/components/schemas/NewCreditDto'
         - type: object
           required:
             - id
           properties:
-            id:
-              type: "string"
+            clientList:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/ClientDto"
+            creditProductList:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/CreditProductDto"
 
     NewCreditDto:
       allOf:
@@ -817,7 +850,7 @@ components:
             creditProductList:
               type: "array"
               items:
-                $ref: "#/components/schemas/CreditProductDto"
+                $ref: "#/components/schemas/NewCreditProductDto"
 
     ErrorDto:
       type: object

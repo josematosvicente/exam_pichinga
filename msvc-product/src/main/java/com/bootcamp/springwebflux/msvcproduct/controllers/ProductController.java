@@ -26,11 +26,11 @@ public class ProductController implements ProductsApi {
 
     @Override
     public Mono<ResponseEntity<ProductDto>> addProduct(Mono<NewProductDto> newProduct, ServerWebExchange exchange) {
-        return newProduct.flatMap(newClientDTO -> productService.save(productMapper.toModel(newClientDTO)))
-                .map(client ->
-                        ResponseEntity.created(URI.create("/api/products/".concat(client.getId())))
+        return newProduct.flatMap(newProductDto ->  productService.save(productMapper.toModel(newProductDto)))
+                .map(product ->
+                        ResponseEntity.created(URI.create("/api/products/".concat(product.getId())))
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .body(productMapper.toDto(client)));
+                                .body(productMapper.toDto(product)));
 
     }
 
