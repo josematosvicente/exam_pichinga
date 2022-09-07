@@ -6,6 +6,7 @@ import com.msvc.specification.api.ProductsApi;
 import com.msvc.specification.api.dto.NewProductDto;
 import com.msvc.specification.api.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +37,9 @@ public class ProductController implements ProductsApi {
 
     @Override
     public Mono<ResponseEntity<Void>> deleteProduct(String id, ServerWebExchange exchange) {
-        return null;
+        return productService.findById(id).flatMap(product -> {
+            return productService.delete(product).then(Mono.just(new ResponseEntity<Void>(HttpStatus.NO_CONTENT)));
+        }).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
     }
 
     @Override
@@ -56,8 +59,19 @@ public class ProductController implements ProductsApi {
     }
 
     @Override
-    public Mono<ResponseEntity<Void>> updateProduct(String id, Mono<ProductDto> productDto, ServerWebExchange exchange) {
-        return null;
+    public Mono<ResponseEntity<ProductDto>> updateProduct(String id, Mono<NewProductDto> newProductDto, ServerWebExchange exchange) {
+        return newProductDto.flatMap(productDto ->
+                productService.findById(id).flatMap(product -> {
+                    product.setName(productDto.getName());
+                    product.setType(productDto.getType());
+                    product.setCategory(productDto.getCategory());
+                    product.setCommission(productDto.getCommission());
+                    product.setLimitDeposit(productDto.getLimitDeposit());
+                    product.setLimitWithdrawal(productDto.getLimitWithdrawal());
+                    product.setLine(productDto.getLine());
+                    return productService.save(product);
+                })).map(product -> ResponseEntity.created(URI.create("/api/products/".concat(product.getId())))
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(productMapper.toDto(product)));
     }
-
 }

@@ -60,8 +60,15 @@ public class ClientController implements ClientsApi {
     }
 
     @Override
-    public Mono<ResponseEntity<Void>> updateClient(String id, Mono<ClientDto> clientDto, ServerWebExchange exchange) {
-        return null;
+    public Mono<ResponseEntity<ClientDto>> updateClient(String id, Mono<NewClientDto> newClientDto, ServerWebExchange exchange) {
+        return newClientDto.flatMap(clientDto ->
+                clientService.findById(id).flatMap(client -> {
+                    client.setFirstName(clientDto.getFirstName());
+                    client.setLastName(clientDto.getLastName());
+                    client.setType(clientDto.getType());
+                    return clientService.save(client);
+                })).map(client -> ResponseEntity.created(URI.create("/api/clients/".concat(client.getId())))
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(mapper.toDto(client)));
     }
-
 }

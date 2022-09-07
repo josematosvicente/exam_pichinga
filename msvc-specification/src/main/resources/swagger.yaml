@@ -107,16 +107,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ClientDto'
+              $ref: '#/components/schemas/NewClientDto'
           application/xml:
             schema:
-              $ref: '#/components/schemas/ClientDto'
+              $ref: '#/components/schemas/NewClientDto'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/ClientDto'
+              $ref: '#/components/schemas/NewClientDto'
       responses:
         default:
           description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ClientDto'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Client not found
+        '405':
+          description: Validation exception
     delete:
       tags:
         - CLIENT
@@ -233,16 +246,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProductDto'
+              $ref: '#/components/schemas/NewProductDto'
           application/xml:
             schema:
-              $ref: '#/components/schemas/ProductDto'
+              $ref: '#/components/schemas/NewProductDto'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/ProductDto'
+              $ref: '#/components/schemas/NewProductDto'
       responses:
         default:
           description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Product not found
+        '405':
+          description: Validation exception
     delete:
       tags:
         - PRODUCT
@@ -702,12 +728,16 @@ components:
               type: "string"
             commission:
               type: "number"
+              format: "double"
             limitDeposit:
               type: "number"
+              format: "double"
             limitWithdrawal:
               type: "number"
+              format: "double"
             line:
               type: "number"
+              format: "double"
     MovementDto:
       allOf:
         - $ref: '#/components/schemas/AccountDto'
@@ -721,6 +751,7 @@ components:
               type: "string"
             amount:
               type: "number"
+              format: "double"
     AccountDto:
       allOf:
         - type: object
@@ -733,6 +764,7 @@ components:
               type: "object"
             balance:
               type: "number"
+              format: "double"
 
     AccountProductDto:
       allOf:
@@ -758,12 +790,16 @@ components:
               type: "string"
             commission:
               type: "number"
+              format: "double"
             limitDeposit:
               type: "number"
+              format: "double"
             limitWithdrawal:
               type: "number"
+              format: "double"
             balance:
               type: "number"
+              format: "double"
 
     CreditProductDto:
       allOf:
@@ -789,6 +825,7 @@ components:
               type: "string"
             line:
               type: "number"
+              format: "double"
 
     AdministrativeAccountDto:
       allOf:

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.msvc.specification.api.dto.NewProductDtoAllOf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * NewProductDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-06T18:16:27.790586600-05:00[America/Lima]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-07T15:20:25.015482300-05:00[America/Bogota]")
 public class NewProductDto   {
   @JsonProperty("name")
   private String name;
@@ -26,16 +25,16 @@ public class NewProductDto   {
   private String category;
 
   @JsonProperty("commission")
-  private BigDecimal commission;
+  private Double commission;
 
   @JsonProperty("limitDeposit")
-  private BigDecimal limitDeposit;
+  private Double limitDeposit;
 
   @JsonProperty("limitWithdrawal")
-  private BigDecimal limitWithdrawal;
+  private Double limitWithdrawal;
 
   @JsonProperty("line")
-  private BigDecimal line;
+  private Double line;
 
   public NewProductDto name(String name) {
     this.name = name;
@@ -97,7 +96,7 @@ public class NewProductDto   {
     this.category = category;
   }
 
-  public NewProductDto commission(BigDecimal commission) {
+  public NewProductDto commission(Double commission) {
     this.commission = commission;
     return this;
   }
@@ -108,17 +107,16 @@ public class NewProductDto   {
   */
   @ApiModelProperty(value = "")
 
-  @Valid
 
-  public BigDecimal getCommission() {
+  public Double getCommission() {
     return commission;
   }
 
-  public void setCommission(BigDecimal commission) {
+  public void setCommission(Double commission) {
     this.commission = commission;
   }
 
-  public NewProductDto limitDeposit(BigDecimal limitDeposit) {
+  public NewProductDto limitDeposit(Double limitDeposit) {
     this.limitDeposit = limitDeposit;
     return this;
   }
@@ -129,17 +127,16 @@ public class NewProductDto   {
   */
   @ApiModelProperty(value = "")
 
-  @Valid
 
-  public BigDecimal getLimitDeposit() {
+  public Double getLimitDeposit() {
     return limitDeposit;
   }
 
-  public void setLimitDeposit(BigDecimal limitDeposit) {
+  public void setLimitDeposit(Double limitDeposit) {
     this.limitDeposit = limitDeposit;
   }
 
-  public NewProductDto limitWithdrawal(BigDecimal limitWithdrawal) {
+  public NewProductDto limitWithdrawal(Double limitWithdrawal) {
     this.limitWithdrawal = limitWithdrawal;
     return this;
   }
@@ -150,17 +147,16 @@ public class NewProductDto   {
   */
   @ApiModelProperty(value = "")
 
-  @Valid
 
-  public BigDecimal getLimitWithdrawal() {
+  public Double getLimitWithdrawal() {
     return limitWithdrawal;
   }
 
-  public void setLimitWithdrawal(BigDecimal limitWithdrawal) {
+  public void setLimitWithdrawal(Double limitWithdrawal) {
     this.limitWithdrawal = limitWithdrawal;
   }
 
-  public NewProductDto line(BigDecimal line) {
+  public NewProductDto line(Double line) {
     this.line = line;
     return this;
   }
@@ -171,13 +167,12 @@ public class NewProductDto   {
   */
   @ApiModelProperty(value = "")
 
-  @Valid
 
-  public BigDecimal getLine() {
+  public Double getLine() {
     return line;
   }
 
-  public void setLine(BigDecimal line) {
+  public void setLine(Double line) {
     this.line = line;
   }
 

@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-06T18:16:27.790586600-05:00[America/Lima]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-07T15:20:25.015482300-05:00[America/Bogota]")
 @Validated
 @Api(value = "products", description = "the products API")
 public interface ProductsApi {
@@ -115,17 +115,24 @@ public interface ProductsApi {
      * This can only be done by the logged in product.
      *
      * @param id ID of product to fetch (required)
-     * @param productDto Update an existent product (optional)
-     * @return successful operation (status code 200)
+     * @param newProductDto Update an existent product (optional)
+     * @return Invalid ID supplied (status code 400)
+     *         or Product not found (status code 404)
+     *         or Validation exception (status code 405)
+     *         or successful operation (status code 200)
      */
-    @ApiOperation(value = "Update product", nickname = "updateProduct", notes = "This can only be done by the logged in product.", tags={ "PRODUCT", })
+    @ApiOperation(value = "Update product", nickname = "updateProduct", notes = "This can only be done by the logged in product.", response = ProductDto.class, tags={ "PRODUCT", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation") })
+        @ApiResponse(code = 400, message = "Invalid ID supplied"),
+        @ApiResponse(code = 404, message = "Product not found"),
+        @ApiResponse(code = 405, message = "Validation exception"),
+        @ApiResponse(code = 200, message = "successful operation", response = ProductDto.class) })
     @RequestMapping(
         method = RequestMethod.PUT,
         value = "/products/{id}",
+        produces = { "application/json", "application/xml" },
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }
     )
-    Mono<ResponseEntity<Void>> updateProduct(@ApiParam(value = "ID of product to fetch", required = true) @PathVariable("id") String id,@ApiParam(value = "Update an existent product") @Valid @RequestBody(required = false) Mono<ProductDto> productDto, @springfox.documentation.annotations.ApiIgnore final ServerWebExchange exchange);
+    Mono<ResponseEntity<ProductDto>> updateProduct(@ApiParam(value = "ID of product to fetch", required = true) @PathVariable("id") String id,@ApiParam(value = "Update an existent product") @Valid @RequestBody(required = false) Mono<NewProductDto> newProductDto, @springfox.documentation.annotations.ApiIgnore final ServerWebExchange exchange);
 
 }
