@@ -66,8 +66,13 @@ public class AdministrationAccountServiceImpl implements AdministrationAccountSe
                 }
         );
 
-        Account account = new Account(clientList,accountProductList);
-        accountRepository.save(account);
-        return null;
+        Account account = new Account(clientList, accountProductList);
+        Mono<Account> accountMono = this.save(account);
+        return Flux.from(accountMono).map(account1 -> {
+            return accountProductMapper.toAdministrativeAccountDto(account1);
+        });
+
+
+
     }
 }
