@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 @Service
 public class MsvcClientWebClient {
@@ -18,7 +19,7 @@ public class MsvcClientWebClient {
     WebClient webclient = WebClient.create("http://localhost:8090");
 
     public Mono<ClientDto> getClientById(String id) {
-        logger.info(String.format("Calling getProduct (%s)", id));
+        logger.info(String.format("Calling getClient (%s)", id));
 
         return webclient.get()
                 .uri("/clients/{id}", id)
@@ -27,7 +28,7 @@ public class MsvcClientWebClient {
     }
 
     public Mono<ClientDto> postClient(NewClientDto newClientDto) {
-        logger.info(String.format("Calling postProduct (%s)", newClientDto));
+        logger.info(String.format("Calling postClient (%s)", newClientDto));
 
         return webclient.post()
                 .uri("/clients")

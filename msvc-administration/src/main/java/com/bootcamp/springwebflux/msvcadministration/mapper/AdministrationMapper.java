@@ -5,12 +5,14 @@ import com.msvc.specification.api.dto.*;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface AdministrativeMapper {
+public interface AdministrationMapper {
 
     AccountProductDto toAccountProductDto(ProductDto value);
 
-    NewProductDto toNewProductDto (NewAccountProductDto value);
+    NewProductDto toNewProductDto(NewAccountProductDto value);
 
-    AdministrativeAccountDto toAdministrativeAccountDto (Account account);
+    AdministrativeAccountDto toAdministrativeAccountDto(Account value);
+
+    Account toAccount(NewAdministrativeAccountDto value);
 
 }

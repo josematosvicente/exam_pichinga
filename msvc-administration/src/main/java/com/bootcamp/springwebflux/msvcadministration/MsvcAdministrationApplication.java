@@ -36,7 +36,7 @@ public class MsvcAdministrationApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        NewAdministrativeAccountDto newAdministrativeAccountDto = new NewAdministrativeAccountDto();
+        /*NewAdministrativeAccountDto newAdministrativeAccountDto = new NewAdministrativeAccountDto();
         List<NewClientDto> clientList = new ArrayList<>();
         List<NewAccountProductDto> accountProductList = new ArrayList<>();
         NewClientDto newClientDto = new NewClientDto();
@@ -50,17 +50,17 @@ public class MsvcAdministrationApplication implements CommandLineRunner {
         newAccountProductDto.setName("Cuenta Bancaria de Ahorro");
         newAccountProductDto.setType("Personal");
         newAccountProductDto.setCategory("Pasivo");
-        newAccountProductDto.setCommission(BigDecimal.valueOf(100.0));
-        newAccountProductDto.setLimitDeposit(BigDecimal.valueOf(5000.0));
-        newAccountProductDto.setLimitWithdrawal(BigDecimal.valueOf(1000.0));
+        newAccountProductDto.setCommission(100.0);
+        newAccountProductDto.setLimitDeposit(5000.0);
+        newAccountProductDto.setLimitWithdrawal(1000.0);
 
         accountProductList.add(newAccountProductDto);
 
         newAdministrativeAccountDto.setClientList(clientList);
         newAdministrativeAccountDto.setAccountProductList(accountProductList);
         Flux<AdministrativeAccountDto> accountFlux= administrationAccountService.postAccount(newAdministrativeAccountDto);
-        accountFlux.subscribe();
-
+        accountFlux.subscribe(administrativeAccountDto -> logger.info(administrativeAccountDto.getId()));
+*/
         //Flux.just(new Account("1","Juan","Perez"))
         //		.flatMap(account -> {
         //			return accountRepository.save(account);

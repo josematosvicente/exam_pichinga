@@ -10,6 +10,6 @@ public interface AdministrationAccountService {
 
 
     public Mono<Account> save(Account account);
-    public Flux<AdministrativeAccountDto> postAccount(NewAdministrativeAccountDto newAdministrativeAccountDto);
+    public Mono<Account> postAccount(NewAdministrativeAccountDto newAdministrativeAccountDto);
 
 }
