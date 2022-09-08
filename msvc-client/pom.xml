@@ -27,7 +27,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-client</artifactId>
+			<artifactId>spring-cloud-starter-bootstrap</artifactId>
 			<version>${cloud.version}</version>
 		</dependency>
 		<dependency>
