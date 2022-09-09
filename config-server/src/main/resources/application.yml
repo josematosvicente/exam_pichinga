@@ -12,7 +12,3 @@ spring:
           search-paths: config-data
           username: username
           password: password
-          default-label: "dev"
-          cloneOnStart: true
-        bootstrap: true
-      enabled: true
