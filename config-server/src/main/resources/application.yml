@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/iqvan/Bootcamp-Project-01
+          uri: https://github.com/iqvan/spring-cloud-bootcamp.git
           search-paths: config-data
-          username: username
-          password: password
+          username: iqvan
+          password: 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
