@@ -14,4 +14,5 @@ spring:
           password: password
           default-label: "dev"
           cloneOnStart: true
-
+        bootstrap: true
+      enabled: true

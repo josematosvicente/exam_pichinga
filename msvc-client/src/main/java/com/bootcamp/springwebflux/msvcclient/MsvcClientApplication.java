@@ -12,7 +12,6 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import reactor.core.publisher.Flux;
 
 @SpringBootApplication
-@EnableAutoConfiguration
 public class MsvcClientApplication{
 
 	public static void main(String[] args) {
