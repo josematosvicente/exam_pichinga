@@ -12,6 +12,6 @@ spring:
           search-paths: config-data
           username: username
           password: password
-          default-label: "dev"
+          default-label: "main"
           cloneOnStart: true
 
