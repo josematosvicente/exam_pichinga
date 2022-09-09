@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: msvc-client
+  cloud:
+    config:
+      name: msvc-client
+      enabled: true
+      profile: dev
+      uri: http://localhost:8888
+      label: dev
+management:
+  security:
+    enabled: false
