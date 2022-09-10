@@ -6,9 +6,11 @@ spring:
     name: config-server
   cloud:
     config:
+      enabled: true
       server:
         git:
-          uri: https://github.com/iqvan/spring-cloud-bootcamp.git
+          uri: https://github.com/iqvan/bootcamp-cloud-config.git
+          default-label: main
           search-paths: config-data
-          username: iqvan
-          password: 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
+          username: username
+          password: password
