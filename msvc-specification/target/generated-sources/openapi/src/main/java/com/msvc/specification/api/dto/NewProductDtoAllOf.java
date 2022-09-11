@@ -12,7 +12,11 @@ import javax.validation.constraints.*;
 /**
  * NewProductDtoAllOf
  */
+<<<<<<< HEAD
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-11T14:19:53.759916-05:00[America/Bogota]")
+=======
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-10T18:24:24.747721400-05:00[America/Bogota]")
+>>>>>>> a8bac6b9ca354e6601b262a006778d1aefa16306
 public class NewProductDtoAllOf   {
   @JsonProperty("name")
   private String name;
