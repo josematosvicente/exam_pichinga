@@ -13,13 +13,11 @@ com\msvc\specification\api\dto\AdministrativeAccountDto.class
 com\msvc\specification\api\dto\NewAdministrativeAccountDto.class
 com\msvc\specification\api\dto\AccountDto.class
 com\msvc\specification\api\dto\MovementDtoAllOf.class
-com\msvc\specification\api\dto\NewCreditDtoAllOf.class
 com\msvc\specification\api\dto\AccountProductDto.class
 com\msvc\specification\api\dto\NewAdministrativeAccountDtoAllOf.class
 com\msvc\specification\api\dto\NewClientDto.class
 com\msvc\specification\api\dto\NewClientDtoAllOf.class
 com\msvc\specification\api\dto\NewCreditProductDto.class
-com\msvc\specification\api\dto\NewCreditProductDtoAllOf.class
 com\msvc\specification\api\dto\NewProductDtoAllOf.class
 com\msvc\specification\api\AdministrativeApi.class
 com\msvc\specification\api\dto\ProductDto.class

@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-08T15:36:33.495706200-05:00[America/Bogota]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-11T14:19:53.759916-05:00[America/Bogota]")
 @Validated
 @Api(value = "clients", description = "the clients API")
 public interface ClientsApi {
@@ -116,21 +116,21 @@ public interface ClientsApi {
      *
      * @param id ID of product to fetch (required)
      * @param newClientDto Update an existent product (optional)
-     * @return Invalid ID supplied (status code 400)
+     * @return successful operation (status code 200)
+     *         or Invalid ID supplied (status code 400)
      *         or Client not found (status code 404)
      *         or Validation exception (status code 405)
-     *         or successful operation (status code 200)
      */
     @ApiOperation(value = "Update client", nickname = "updateClient", notes = "This can only be done by the logged in client.", response = ClientDto.class, tags={ "CLIENT", })
     @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = ClientDto.class),
         @ApiResponse(code = 400, message = "Invalid ID supplied"),
         @ApiResponse(code = 404, message = "Client not found"),
-        @ApiResponse(code = 405, message = "Validation exception"),
-        @ApiResponse(code = 200, message = "successful operation", response = ClientDto.class) })
+        @ApiResponse(code = 405, message = "Validation exception") })
     @RequestMapping(
         method = RequestMethod.PUT,
         value = "/clients/{id}",
-        produces = { "application/json", "application/xml" },
+        produces = { "application/json" },
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }
     )
     Mono<ResponseEntity<ClientDto>> updateClient(@ApiParam(value = "ID of product to fetch", required = true) @PathVariable("id") String id,@ApiParam(value = "Update an existent product") @Valid @RequestBody(required = false) Mono<NewClientDto> newClientDto, @springfox.documentation.annotations.ApiIgnore final ServerWebExchange exchange);

@@ -47,25 +47,20 @@ public class AdministrationAccountServiceImpl implements AdministrationAccountSe
         return Flux.fromIterable(newAdministrativeAccountDto.getClientList())
                 .flatMap(newClientDto -> msvcClientWebClient.postClient(newClientDto)
                 )
-                .map(clientDto -> {
-                    List<ClientDto> clientList = new ArrayList<>();
-                    clientList.add(clientDto);
-                    logger.info("clientDto.getFirstName " + clientDto.getFirstName());
-                    logger.info("clientDto.getId " + clientDto.getId());
-                    return clientList;
-                }).zipWith(Flux.fromIterable(newAdministrativeAccountDto.getAccountProductList())
-                        .flatMap(newAccountProductDto -> msvcProductClient.postProduct(administrationMapper.toNewProductDto(newAccountProductDto))
-                                .map(productDto -> {
-                                    List<AccountProductDto> accountProductList = new ArrayList<>();
-                                    accountProductList.add(administrationMapper.toAccountProductDto(productDto));
-                                    logger.info("productDto.getId " + productDto.getId());
-                                    logger.info("productDto.getId " + productDto.getName());
-                                    return accountProductList;
-                                }))
-                ).flatMap(objects -> {
-                    Account account = new Account(objects.getT1(), objects.getT2());
-                    return accountRepository.save(account);
-                }).next();
+                // .zipWith(msvcProductClient.postProduct(administrationMapper.toNewProductDto(newAdministrativeAccountDto))
+                //                 .map(productDto -> {
+                //                     AccountProductDto accountProductDto = new AccountProductDto();
+                //                     logger.info("productDto.getId " + productDto.getId());
+                //                     logger.info("productDto.getId " + productDto.getName());
+                //                     accountProductDto.setId(productDto.getId());
+                //                     return accountProductDto;
+                //                 })
+                // )
+                .collectList().flatMap(a -> {AccountProductDto accountProductDto = new AccountProductDto();
+                accountProductDto.setId(newAdministrativeAccountDto.getIdProduct());
+                Account account = new Account(a, accountProductDto);
+                return accountRepository.save(account);
+            });
 
     }
 }
