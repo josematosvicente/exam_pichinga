@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * NewClientDtoAllOf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-11T14:19:53.759916-05:00[America/Bogota]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-11T18:11:59.095922700-05:00[America/Lima]")
 public class NewClientDtoAllOf   {
   @JsonProperty("first_name")
   private String firstName;
