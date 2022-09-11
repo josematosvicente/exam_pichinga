@@ -5,16 +5,3 @@ spring:
     active: dev
   config:
     import: "optional:configserver:http://localhost:8888/"
-management:
-  endpoints:
-    web:
-      exposure:
-        include: 'info'
-  info:
-    env:
-      enabled: true
-info:
-  app:
-    version: 1.0.0
-    name: Microservices Client
-    description: Microservices related to the maintenance of clients
