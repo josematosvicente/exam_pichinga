@@ -781,8 +781,9 @@ components:
           properties:
             id_client:
               type: "string"
-            id_product:
-              type: "string"
+            product:
+              $ref: '#/components/schemas/ProductDto'
+              type: "object"
             balance:
               type: "number"
               format: "double"
