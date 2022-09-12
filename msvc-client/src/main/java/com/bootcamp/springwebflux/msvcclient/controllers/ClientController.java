@@ -2,6 +2,8 @@ package com.bootcamp.springwebflux.msvcclient.controllers;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -71,4 +73,5 @@ public class ClientController implements ClientsApi {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(mapper.toDto(client)));
     }
+
 }

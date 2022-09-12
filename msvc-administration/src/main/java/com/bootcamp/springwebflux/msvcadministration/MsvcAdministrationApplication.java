@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
-public class MsvcAdministrationApplication implements CommandLineRunner {
+public class MsvcAdministrationApplication {
 
     Logger logger = LoggerFactory.getLogger(MsvcAdministrationApplication.class);
 
@@ -32,69 +32,6 @@ public class MsvcAdministrationApplication implements CommandLineRunner {
 
     @Autowired
     private AdministrationAccountService administrationAccountService;
-
-    @Override
-    public void run(String... args) throws Exception {
-
-        /*NewAdministrativeAccountDto newAdministrativeAccountDto = new NewAdministrativeAccountDto();
-        List<NewClientDto> clientList = new ArrayList<>();
-        List<NewAccountProductDto> accountProductList = new ArrayList<>();
-        NewClientDto newClientDto = new NewClientDto();
-        newClientDto.setFirstName("Felipe");
-        newClientDto.setLastName("Garcia");
-        newClientDto.setType("Titular");
-
-        clientList.add(newClientDto);
-
-        NewAccountProductDto newAccountProductDto = new NewAccountProductDto();
-        newAccountProductDto.setName("Cuenta Bancaria de Ahorro");
-        newAccountProductDto.setType("Personal");
-        newAccountProductDto.setCategory("Pasivo");
-        newAccountProductDto.setCommission(100.0);
-        newAccountProductDto.setLimitDeposit(5000.0);
-        newAccountProductDto.setLimitWithdrawal(1000.0);
-
-        accountProductList.add(newAccountProductDto);
-
-        newAdministrativeAccountDto.setClientList(clientList);
-        newAdministrativeAccountDto.setAccountProductList(accountProductList);
-        Flux<AdministrativeAccountDto> accountFlux= administrationAccountService.postAccount(newAdministrativeAccountDto);
-        accountFlux.subscribe(administrativeAccountDto -> logger.info(administrativeAccountDto.getId()));
-*/
-        //Flux.just(new Account("1","Juan","Perez"))
-        //		.flatMap(account -> {
-        //			return accountRepository.save(account);
-        //		})
-        //		.subscribe();
-
-        //Mono<ProductDto> product = msvcProductClient.getProduct("1");
-        //product.subscribe(productDto -> {
-        //    logger.info("Get: " + productDto.getName());
-        //});
-
-        //NewProductDto newProductDto = new NewProductDto();
-        //newProductDto.setName("Cuenta Bancaria de Ahorro");
-        //newProductDto.setType("Personal");
-        //newProductDto.setCategory("Pasivo");
-        //newProductDto.setCommission(BigDecimal.valueOf(100.0));
-        //newProductDto.setLimitDeposit(BigDecimal.valueOf(5000.0));
-        //newProductDto.setLimitWithdrawal(BigDecimal.valueOf(1000.0));
-        //newProductDto.setLine(null);
-
-        //Mono<ProductDto> product2 = msvcProductClient.postProduct(newProductDto);
-        //product2.subscribe(productDto -> {
-        //logger.info("Get: " + productDto.getName());
-        //});
-        //Flux.just(new Account("1","Juan","Perez"))
-        //		.flatMap(account -> {
-        //			return accountRepository.save(account);
-        //		})
-        //		.subscribe();
-    }
-
-    @Autowired
-    private ReactiveMongoTemplate mongoTemplate;
-
 
     public static void main(String[] args) {
         SpringApplication.run(MsvcAdministrationApplication.class, args);

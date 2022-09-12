@@ -11,6 +11,8 @@ public interface AdministrationMapper {
 
     NewProductDto toNewProductDto(NewAccountProductDto value);
 
+    NewProductDto toNewProductDto(NewAdministrativeAccountDto value);
+
     AdministrativeAccountDto toAdministrativeAccountDto(Account value);
 
     Account toAccount(NewAdministrativeAccountDto value);

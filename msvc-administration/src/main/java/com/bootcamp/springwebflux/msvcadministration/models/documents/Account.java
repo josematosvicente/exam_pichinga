@@ -19,7 +19,7 @@ public class Account {
     @Id
     private String id;
 
-    public Account(List<ClientDto> clientList, List<AccountProductDto> accountProductList) {
+    public Account(List<ClientDto> clientList, AccountProductDto accountProductList) {
         this.clientList = clientList;
         this.accountProductList = accountProductList;
     }
@@ -27,6 +27,6 @@ public class Account {
     public Account(){}
 
     private List<ClientDto> clientList;
-    private List<AccountProductDto> accountProductList;
+    private AccountProductDto accountProductList;
 
 }

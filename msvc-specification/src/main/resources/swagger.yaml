@@ -115,13 +115,10 @@ paths:
             schema:
               $ref: '#/components/schemas/NewClientDto'
       responses:
-        default:
+        '200':
           description: successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ClientDto'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/ClientDto'
         '400':
@@ -782,21 +779,10 @@ components:
           required:
             - id
           properties:
-            name:
+            id_client:
               type: "string"
-            type:
+            id_product:
               type: "string"
-            category:
-              type: "string"
-            commission:
-              type: "number"
-              format: "double"
-            limitDeposit:
-              type: "number"
-              format: "double"
-            limitWithdrawal:
-              type: "number"
-              format: "double"
             balance:
               type: "number"
               format: "double"
@@ -817,18 +803,17 @@ components:
           required:
             - id
           properties:
-            name:
+            id_client:
               type: "string"
-            type:
+            id_product:
               type: "string"
-            category:
-              type: "string"
-            line:
+            balance:
               type: "number"
               format: "double"
 
     AdministrativeAccountDto:
       allOf:
+        - $ref: "#/components/schemas/AccountProductDto"
         - type: object
           required:
             - id
@@ -839,14 +824,10 @@ components:
               type: "array"
               items:
                 $ref: "#/components/schemas/ClientDto"
-            accountProductList:
-              type: "array"
-              items:
-                $ref: "#/components/schemas/AccountProductDto"
-
     NewAdministrativeAccountDto:
       allOf:
-        - type: object
+        - $ref: "#/components/schemas/NewAccountProductDto"
+        - type: "object"
           required:
             - id
           properties:
@@ -854,13 +835,9 @@ components:
               type: "array"
               items:
                 $ref: "#/components/schemas/NewClientDto"
-            accountProductList:
-              type: "array"
-              items:
-                $ref: "#/components/schemas/NewAccountProductDto"
-
     CreditDto:
       allOf:
+        - $ref: "#/components/schemas/CreditProductDto"
         - type: object
           required:
             - id
@@ -869,13 +846,11 @@ components:
               type: "array"
               items:
                 $ref: "#/components/schemas/ClientDto"
-            creditProductList:
-              type: "array"
-              items:
-                $ref: "#/components/schemas/CreditProductDto"
+                
 
     NewCreditDto:
       allOf:
+        - $ref: "#/components/schemas/NewCreditProductDto"
         - type: object
           required:
             - id
@@ -884,10 +859,6 @@ components:
               type: "array"
               items:
                 $ref: "#/components/schemas/NewClientDto"
-            creditProductList:
-              type: "array"
-              items:
-                $ref: "#/components/schemas/NewCreditProductDto"
 
     ErrorDto:
       type: object
