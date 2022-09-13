@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @Document(collection = "movements")
-public class Movements {
+public class Movement {
 
     @Id
     private String id;
