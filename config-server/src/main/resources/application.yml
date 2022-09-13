@@ -12,5 +12,5 @@ spring:
           uri: https://github.com/iqvan/bootcamp-cloud-config.git
           default-label: main
           search-paths: config-data
-          username: josematosvicente
+          username: iqvan
           password: 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
