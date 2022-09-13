@@ -24,4 +24,14 @@ public class MsvcProductWebClient {
                 .bodyToMono(ProductDto.class);
     }
 
+    public Mono<ProductDto> postProduct(NewProductDto newProductDto) {
+        logger.info(String.format("Calling postProduct (%s)", newProductDto));
+
+        return webclient.post()
+                .uri("/products")
+                .body(Mono.just(newProductDto), NewProductDto.class)
+                .retrieve()
+                .bodyToMono(ProductDto.class);
+    }
+
 }

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: msvc_financial
+    name: msvc-financial
   profiles:
     active: dev
   config:

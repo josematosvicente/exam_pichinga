@@ -14,30 +14,10 @@ import java.util.List;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableDiscoveryClient
-public class GatewayApplication implements CommandLineRunner {
-	@Autowired
-	private DiscoveryClient discoveryClient;
+public class GatewayApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-		System.out.println("LIST INSTANCES");
-		List<String> list = discoveryClient.getServices();
-
-		list.forEach(item -> {
-			System.out.println("Service: " + item);
-			List<ServiceInstance> instances = this.discoveryClient.getInstances(item);
-			instances.forEach(instance -> {
-				System.out.println("URI: " + instance.getUri());
-				System.out.println("HOST: " + instance.getHost());
-				System.out.println("PORT: " + instance.getPort());
-				System.out.println("INSTANCE ID: " + instance.getInstanceId());
-				System.out.println("SERVICE ID: " + instance.getServiceId());
-			});
-		});
 	}
 
 }
