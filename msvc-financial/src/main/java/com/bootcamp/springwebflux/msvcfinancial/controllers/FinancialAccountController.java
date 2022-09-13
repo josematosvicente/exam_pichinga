@@ -2,10 +2,13 @@ package com.bootcamp.springwebflux.msvcfinancial.controllers;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 
+import com.bootcamp.springwebflux.msvcfinancial.mapper.FinancialMapper;
+import com.bootcamp.springwebflux.msvcfinancial.services.FinancialAccountService;
 import com.msvc.specification.api.FinantialApi;
 import com.msvc.specification.api.dto.AccountDto;
 import com.msvc.specification.api.dto.MovementDto;
@@ -15,10 +18,12 @@ import reactor.core.publisher.Mono;
 @RestController
 public class FinancialAccountController implements FinantialApi{
 
+    @Autowired
+    private FinancialAccountService financialAccountService;
+
     @Override
-    public Mono<ResponseEntity<AccountDto>> balanceAccount(String arg0, @Valid Mono<AccountDto> arg1,
+    public Mono<ResponseEntity<AccountDto>> balanceAccount(String arg0, @Valid Mono<AccountDto> accountDto,
             ServerWebExchange arg2) {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -30,9 +35,11 @@ public class FinancialAccountController implements FinantialApi{
     }
 
     @Override
-    public Mono<ResponseEntity<AccountDto>> movement(String arg0, @Valid Mono<MovementDto> arg1,
+    public Mono<ResponseEntity<AccountDto>> movement(String id, @Valid Mono<MovementDto> movementDto,
             ServerWebExchange arg2) {
-        // TODO Auto-generated method stub
+        // movementDto.flatMap(account -> 
+        //     financialAccountService.save(id, movements)
+        // )
         return null;
     }
 
