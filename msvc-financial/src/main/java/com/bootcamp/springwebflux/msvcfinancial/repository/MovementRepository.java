@@ -8,5 +8,5 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
 @Repository
 public interface MovementRepository extends ReactiveMongoRepository<Movement, String> {
-    
+
 }

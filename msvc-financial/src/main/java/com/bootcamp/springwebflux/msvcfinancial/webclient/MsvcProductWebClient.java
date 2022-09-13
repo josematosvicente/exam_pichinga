@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class MsvcProductWebClient {
 
-    Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
+    private Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
 
     WebClient webclient = WebClient.create("http://localhost:62486");
 
