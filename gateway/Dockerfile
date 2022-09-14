@@ -1,30 +1,13 @@
-FROM adoptopenjdk/openjdk11:alpine-slim as build
+FROM maven:3.8.6-openjdk-11-slim as build
 
-COPY .mvn .mvn
-COPY mvnw .
-COPY pom.xml .
-# clean up the file
-RUN sed -i 's/\r$//' mvnw
-# run with the SH path
-RUN /bin/sh mvnw dependency:resolve
-
-COPY src src
-RUN ./mvnw package -DskipTests
-
-FROM adoptopenjdk/openjdk11:alpine-jre
-
-ARG JAR_FILE=gateway-0.0.1-SNAPSHOT.jar
-ARG JAR_NAME=gateway.jar
-
-COPY --from=build target/${JAR_FILE} ${JAR_NAME}
-
-EXPOSE 8761
-ENTRYPOINT ["java", "-jar", "gateway.jar"]
+COPY src /home/app/src
+COPY pom.xml /home/app
 
 
+RUN mvn -f /home/app/pom.xml clean install -DskipTests
 
-FROM openjdk:11
-VOLUME /tmp
-EXPOSE 8888
-ADD ./target/gateway-0.0.1-SNAPSHOT.jar gateway-server.jar
-ENTRYPOINT ["java", "-jar", "/gateway-server.jar"]
+FROM openjdk:11-jre-slim
+
+COPY --from=build /home/app/target/gateway-0.0.1-SNAPSHOT.jar /usr/local/lib/gateway.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/usr/local/lib/gateway.jar"]

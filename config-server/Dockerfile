@@ -1,22 +1,12 @@
-FROM adoptopenjdk/openjdk11:alpine-slim as build
+FROM maven:3.8.6-openjdk-11-slim as build
 
-COPY .mvn .mvn
-COPY mvnw .
-COPY pom.xml .
-# clean up the file
-RUN sed -i 's/\r$//' mvnw
-# run with the SH path
-RUN /bin/sh mvnw dependency:resolve
+COPY src /home/app/src
+COPY pom.xml /home/app
 
-COPY src src
-RUN ./mvnw package -DskipTests
+RUN mvn -f /home/app/pom.xml clean install -DskipTests
 
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM openjdk:11-jre-slim
 
-ARG JAR_FILE=config-server-0.0.1-SNAPSHOT.jar
-ARG JAR_NAME=config-server.jar
-
-COPY --from=build target/${JAR_FILE} ${JAR_NAME}
-
+COPY --from=build /home/app/target/config-server-0.0.1-SNAPSHOT.jar /usr/local/lib/config-server.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "config-server.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/config-server.jar"]
