@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Document(collection = "movements")
 public class Movement {
 

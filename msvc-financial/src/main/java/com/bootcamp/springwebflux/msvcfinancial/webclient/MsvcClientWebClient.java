@@ -13,7 +13,7 @@ public class MsvcClientWebClient {
 
     Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
 
-    WebClient webclient = WebClient.create("http://localhost:49955");
+    WebClient webclient = WebClient.create("http://localhost:56403");
 
     public Mono<ClientDto> getClientById(String id) {
         logger.info(String.format("Calling getClient (%s)", id));

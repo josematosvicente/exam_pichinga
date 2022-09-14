@@ -24,15 +24,6 @@ public class MsvcAdministrationApplication {
 
     Logger logger = LoggerFactory.getLogger(MsvcAdministrationApplication.class);
 
-    @Autowired
-    private AccountRepository accountRepository;
-
-    @Autowired
-    private MsvcProductWebClient msvcProductClient;
-
-    @Autowired
-    private AdministrationAccountService administrationAccountService;
-
     public static void main(String[] args) {
         SpringApplication.run(MsvcAdministrationApplication.class, args);
     }
