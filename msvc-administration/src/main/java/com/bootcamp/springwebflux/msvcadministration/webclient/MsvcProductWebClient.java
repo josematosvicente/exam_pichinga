@@ -15,7 +15,7 @@ public class MsvcProductWebClient {
 
     Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
 
-    WebClient webclient = WebClient.create("http://localhost:62486");
+    WebClient webclient = WebClient.create("http://localhost:8080");
 
     public Mono<ProductDto> getProduct(String id) {
         logger.info(String.format("Calling getProduct (%s)", id));
