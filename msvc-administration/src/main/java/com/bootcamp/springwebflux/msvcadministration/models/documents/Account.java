@@ -3,7 +3,6 @@ package com.bootcamp.springwebflux.msvcadministration.models.documents;
 import com.msvc.specification.api.dto.AccountProductDto;
 import com.msvc.specification.api.dto.ClientDto;
 import com.msvc.specification.api.dto.ProductDto;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -19,14 +18,14 @@ public class Account {
     @Id
     private String id;
 
-    public Account(List<ClientDto> clientList, AccountProductDto accountProductList) {
+    public Account(List<ClientDto> clientList, ProductDto productDto) {
         this.clientList = clientList;
-        this.accountProductList = accountProductList;
+        this.productDto = productDto;
     }
 
     public Account(){}
 
     private List<ClientDto> clientList;
-    private AccountProductDto accountProductList;
+    private ProductDto productDto;
 
 }

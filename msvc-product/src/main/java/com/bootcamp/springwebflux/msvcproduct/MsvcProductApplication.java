@@ -19,7 +19,7 @@ public class MsvcProductApplication implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
 
-        mongoTemplate.dropCollection("product");
+        // mongoTemplate.dropCollection("product");
 
         NewProductDto newProductDto = new NewProductDto();
         newProductDto.setName("Cuenta Bancaria de Ahorro");
@@ -30,7 +30,7 @@ public class MsvcProductApplication implements CommandLineRunner{
         newProductDto.setLimitWithdrawal(Double.valueOf(1000.0));
         newProductDto.setLine(null);
 
-        mongoTemplate.save(newProductDto, "product");
+        mongoTemplate.save(newProductDto);
 
     }
 

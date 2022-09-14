@@ -31,36 +31,22 @@ public class AdministrationAccountServiceImpl implements AdministrationAccountSe
     @Autowired
     private AccountRepository accountRepository;
 
-    @Autowired
-    private AdministrationMapper administrationMapper;
-
     @Override
     public Mono<Account> save(Account account) {
-        logger.info("save(Account getAccountProductList): " + account.getAccountProductList());
+        logger.info("save(Account getProductDto): " + account.getProductDto());
         logger.info("save(Account getClientList): " + account.getClientList());
         return accountRepository.save(account);
     }
 
     @Override
     public Mono<Account> postAccount(NewAdministrativeAccountDto newAdministrativeAccountDto) {
-
         return Flux.fromIterable(newAdministrativeAccountDto.getClientList())
-                .flatMap(newClientDto -> msvcClientWebClient.postClient(newClientDto)
-                )
-                // .zipWith(msvcProductClient.postProduct(administrationMapper.toNewProductDto(newAdministrativeAccountDto))
-                //                 .map(productDto -> {
-                //                     AccountProductDto accountProductDto = new AccountProductDto();
-                //                     logger.info("productDto.getId " + productDto.getId());
-                //                     logger.info("productDto.getId " + productDto.getName());
-                //                     accountProductDto.setId(productDto.getId());
-                //                     return accountProductDto;
-                //                 })
-                // )
-                .collectList().flatMap(a -> {AccountProductDto accountProductDto = new AccountProductDto();
-                accountProductDto.setId(newAdministrativeAccountDto.getIdProduct());
-                Account account = new Account(a, accountProductDto);
-                return accountRepository.save(account);
-            });
-
+                .flatMap(newClientDto -> msvcClientWebClient.postClient(newClientDto))
+                .collectList()
+                .flatMap(a -> 
+                    msvcProductClient
+                        .getProduct(newAdministrativeAccountDto.getProduct().getId())
+                        .flatMap(productDto -> accountRepository.save(new Account(a, productDto)))
+            );
     }
 }
