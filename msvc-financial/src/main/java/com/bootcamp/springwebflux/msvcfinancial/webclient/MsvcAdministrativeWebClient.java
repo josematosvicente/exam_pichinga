@@ -1,5 +1,6 @@
 package com.bootcamp.springwebflux.msvcfinancial.webclient;
 
+import com.msvc.specification.api.dto.AdministrativeAccountDto;
 import com.msvc.specification.api.dto.NewProductDto;
 import com.msvc.specification.api.dto.ProductDto;
 import org.slf4j.Logger;
@@ -9,19 +10,19 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Service
-public class MsvcAccountWebClient {
+public class MsvcAdministrativeWebClient {
 
     Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
 
-    WebClient webclient = WebClient.create("http://localhost:62486");
+    WebClient webclient = WebClient.create("http://localhost:56646");
 
-    public Mono<ProductDto> getAccount(String id) {
+    public Mono<AdministrativeAccountDto> getAccount(String id) {
         logger.info(String.format("Calling getAccount (%s)", id));
 
         return webclient.get()
                 .uri("/administrative/accounts/{id}", id)
                 .retrieve()
-                .bodyToMono(ProductDto.class);
+                .bodyToMono(AdministrativeAccountDto.class);
     }
 
     public Mono<ProductDto> postProduct(NewProductDto newProductDto) {

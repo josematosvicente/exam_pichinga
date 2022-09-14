@@ -2,12 +2,12 @@ package com.bootcamp.springwebflux.msvcfinancial.mapper;
 
 import org.mapstruct.Mapper;
 
-import com.msvc.specification.api.dto.NewAccountProductDto;
-import com.msvc.specification.api.dto.NewProductDto;
+import com.bootcamp.springwebflux.msvcfinancial.models.documents.Movement;
+import com.msvc.specification.api.dto.MovementDto;
 
 @Mapper(componentModel = "spring")
 public interface FinancialMapper {
 
-    NewProductDto toNewProductDto(NewAccountProductDto value);
+    Movement toModel(MovementDto value);
     
 }

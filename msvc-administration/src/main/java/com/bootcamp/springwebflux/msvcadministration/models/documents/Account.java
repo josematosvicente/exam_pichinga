@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
@@ -27,5 +28,7 @@ public class Account {
 
     private List<ClientDto> clientList;
     private ProductDto productDto;
+
+    private BigDecimal balance;
 
 }
