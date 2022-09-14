@@ -2,6 +2,7 @@ package com.bootcamp.springwebflux.msvcadministration.controllers;
 
 import com.bootcamp.springwebflux.msvcadministration.mapper.AdministrationMapper;
 import com.bootcamp.springwebflux.msvcadministration.services.AdministrationAccountService;
+import com.bootcamp.springwebflux.msvcadministration.services.AdministrationCreditService;
 import com.msvc.specification.api.AdministrativeApi;
 import com.msvc.specification.api.dto.AdministrativeAccountDto;
 import com.msvc.specification.api.dto.CreditDto;
@@ -22,6 +23,9 @@ public class AdministrationController implements AdministrativeApi {
 
     @Autowired
     private AdministrationAccountService administrationAccountService;
+
+    @Autowired
+    private AdministrationCreditService administrationCreditService;
 
     @Autowired
     private AdministrationMapper administrationMapper;
