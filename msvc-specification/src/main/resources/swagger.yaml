@@ -737,12 +737,11 @@ components:
               format: "double"
     MovementDto:
       allOf:
-        - $ref: '#/components/schemas/AccountDto'
         - type: object
           required:
             - id
           properties:
-            idAccount:
+            id:
               type: "string"
             type:
               type: "string"
@@ -755,10 +754,6 @@ components:
           required:
             - id
           properties:
-            idAccount:
-              type: "string"
-            product:
-              type: "object"
             balance:
               type: "number"
               format: "double"
@@ -783,7 +778,6 @@ components:
               type: "string"
             product:
               $ref: '#/components/schemas/ProductDto'
-              type: "object"
             balance:
               type: "number"
               format: "double"
