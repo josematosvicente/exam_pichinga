@@ -14,7 +14,7 @@ public class MsvcAdministrativeWebClient {
 
     Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
 
-    WebClient webclient = WebClient.create("http://localhost:56646");
+    WebClient webclient = WebClient.create("http://localhost:8080");
 
     public Mono<AdministrativeAccountDto> getAccount(String id) {
         logger.info(String.format("Calling getAccount (%s)", id));
