@@ -1,6 +1,12 @@
 
 # NTTDATA Bootcamp Microservicios
 
+Integrantes:
+
+- José Jonathan Matos Vicente
+- Christian Armando Ubillus Chaname
+- Héctor Walter Pretell Hinostroza
+
 El sistema a desarrollar está planteado en el contexto del negocio bancario que a medida que
 se va avanzando en los proyectos, se irá ampliando en base a este mismo proyecto
 
