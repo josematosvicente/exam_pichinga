@@ -3,6 +3,8 @@
 
 Integrantes:
 
+- José Jonathan Matos Vicente
+- Christian Armando Ubillus Chaname
 - Héctor Walter Pretell Hinostroza
 
 El sistema a desarrollar está planteado en el contexto del negocio bancario que a medida que
