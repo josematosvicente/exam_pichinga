@@ -103,7 +103,6 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.bootcamp.springwebflux</groupId>
 			<artifactId>msvc-specification</artifactId>

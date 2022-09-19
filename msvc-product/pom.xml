@@ -92,7 +92,6 @@
 			<artifactId>springfox-swagger2</artifactId>
 			<version>${springfox.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
@@ -103,9 +102,8 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
-
 		<dependency>
-			<groupId>com.msvc</groupId>
+			<groupId>com.bootcamp.springwebflux</groupId>
 			<artifactId>msvc-specification</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
