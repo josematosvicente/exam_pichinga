@@ -738,21 +738,19 @@ components:
     MovementDto:
       allOf:
         - type: object
-          required:
-            - id
           properties:
-            id:
-              type: "string"
             type:
               type: "string"
             amount:
               type: "number"
               format: "double"
+              minimum: 0
+            creationTime:
+              type: string
+              format: date-time
     AccountDto:
       allOf:
         - type: object
-          required:
-            - id
           properties:
             balance:
               type: "number"
@@ -762,8 +760,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/NewAccountProductDto'
         - type: object
-          required:
-            - id
           properties:
             id:
               type: "string"
@@ -771,8 +767,6 @@ components:
     NewAccountProductDto:
       allOf:
         - type: object
-          required:
-            - id
           properties:
             id_client:
               type: "string"
@@ -786,8 +780,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/NewCreditProductDto'
         - type: object
-          required:
-            - id
           properties:
             id:
               type: "string"
@@ -795,8 +787,6 @@ components:
     NewCreditProductDto:
       allOf:
         - type: object
-          required:
-            - id
           properties:
             id_client:
               type: "string"
@@ -810,8 +800,6 @@ components:
       allOf:
         - $ref: "#/components/schemas/AccountProductDto"
         - type: object
-          required:
-            - id
           properties:
             id:
               type: "string"
@@ -823,8 +811,6 @@ components:
       allOf:
         - $ref: "#/components/schemas/NewAccountProductDto"
         - type: "object"
-          required:
-            - id
           properties:
             clientList:
               type: "array"
@@ -834,8 +820,6 @@ components:
       allOf:
         - $ref: "#/components/schemas/CreditProductDto"
         - type: object
-          required:
-            - id
           properties:
             clientList:
               type: "array"
@@ -847,8 +831,6 @@ components:
       allOf:
         - $ref: "#/components/schemas/NewCreditProductDto"
         - type: object
-          required:
-            - id
           properties:
             clientList:
               type: "array"
