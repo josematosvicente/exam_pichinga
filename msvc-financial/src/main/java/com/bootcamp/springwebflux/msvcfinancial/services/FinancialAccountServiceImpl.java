@@ -1,14 +1,19 @@
 package com.bootcamp.springwebflux.msvcfinancial.services;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Service;
 
 import com.bootcamp.springwebflux.msvcfinancial.models.documents.Movement;
 import com.bootcamp.springwebflux.msvcfinancial.repository.MovementRepository;
 import com.bootcamp.springwebflux.msvcfinancial.webclient.MsvcAdministrativeWebClient;
 import com.msvc.specification.api.dto.AccountDto;
+import com.msvc.specification.api.dto.AdministrativeAccountDto;
 
 import reactor.core.publisher.Mono;
 
@@ -27,12 +32,38 @@ public class FinancialAccountServiceImpl implements FinancialAccountService {
     public Mono<AccountDto> save(String id, Movement movement) {
         logger.info("save(Movements getAccountId): " + id);
         movement.setAccountId(id);
-        return movementRepository.save(movement)
-            .then(msvcAdministrativeClient.getAccount(id))
-            .map(account -> {
-                AccountDto accountDto = new AccountDto();
-                accountDto.setBalance(account.getBalance());
-                return accountDto;
-            });
+        movement.setCreateAt(new Date());
+        AdministrativeAccountDto account = new AdministrativeAccountDto();
+        return Mono.just(movement)
+            .flatMap(x-> msvcAdministrativeClient.getAccount(id))
+            .flatMap(a -> validate(a, movement)
+                .flatMap(ac -> movementRepository.save(movement))
+                .flatMap(c-> 
+                    msvcAdministrativeClient.getAccount(id)
+                    .flatMap(acc -> {
+                            acc.setBalance(acc.getBalance() == null ? 0 : acc.getBalance());
+                            if(movement.getType().equals("DEPOSIT")){
+                                account.setBalance(acc.getBalance() + movement.getAmount());
+                            } else {
+                                account.setBalance(acc.getBalance() - movement.getAmount());
+                            }
+                            acc.setBalance(account.getBalance());
+                            return msvcAdministrativeClient.updateBalance(id, account).then(Mono.just(acc));
+                        }
+                    )
+                ).map(accountMap -> {
+                    AccountDto accountDto = new AccountDto();
+                    accountDto.setBalance(accountMap.getBalance());
+                    return accountDto;
+                })
+            )
+            ;
+    }
+
+    public Mono<AdministrativeAccountDto> validate(AdministrativeAccountDto administrativeAccountDto, Movement movement) {
+        return (administrativeAccountDto.getBalance() < movement.getAmount()
+                && !movement.getType().equals("DEPOSIT")) ?
+            Mono.error(() -> new RuntimeException("No tiene saldo disponible para el retiro")) :
+            Mono.just(administrativeAccountDto);
     }
 }

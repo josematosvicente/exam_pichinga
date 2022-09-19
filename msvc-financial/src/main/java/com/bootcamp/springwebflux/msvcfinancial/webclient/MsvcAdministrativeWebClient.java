@@ -25,6 +25,16 @@ public class MsvcAdministrativeWebClient {
                 .bodyToMono(AdministrativeAccountDto.class);
     }
 
+    public Mono<Void> updateBalance(String id, AdministrativeAccountDto account) {
+        logger.info(String.format("Calling updateBalance (%s)", id));
+
+        return webclient.put()
+                .uri("/administrative/accounts/{id}", id)
+                .body(Mono.just(account), AdministrativeAccountDto.class)
+                .retrieve()
+                .bodyToMono(Void.class);
+    }
+
     public Mono<ProductDto> postProduct(NewProductDto newProductDto) {
         logger.info(String.format("Calling postProduct (%s)", newProductDto));
 
