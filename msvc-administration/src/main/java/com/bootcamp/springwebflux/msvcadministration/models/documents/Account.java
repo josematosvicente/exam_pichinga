@@ -19,9 +19,10 @@ public class Account {
     @Id
     private String id;
 
-    public Account(List<ClientDto> clientList, ProductDto productDto) {
+    public Account(List<ClientDto> clientList, ProductDto productDto, Double balance) {
         this.clientList = clientList;
         this.productDto = productDto;
+        this.balance = balance;
     }
 
     public Account(){}
@@ -29,6 +30,6 @@ public class Account {
     private List<ClientDto> clientList;
     private ProductDto productDto;
 
-    private BigDecimal balance;
+    private Double balance;
 
 }

@@ -35,18 +35,34 @@ public class AdministrationAccountServiceImpl implements AdministrationAccountSe
     public Mono<Account> save(Account account) {
         logger.info("save(Account getProductDto): " + account.getProductDto());
         logger.info("save(Account getClientList): " + account.getClientList());
+        logger.info("save(Account getBalance): " + account.getBalance());
         return accountRepository.save(account);
     }
 
     @Override
     public Mono<Account> postAccount(NewAdministrativeAccountDto newAdministrativeAccountDto) {
-        return Flux.fromIterable(newAdministrativeAccountDto.getClientList())
+        return Mono.just(newAdministrativeAccountDto)
+                .flatMap(acc -> validate(acc))
+                .flatMap(accountDto -> Flux.fromIterable(accountDto.getClientList())
                 .flatMap(newClientDto -> msvcClientWebClient.postClient(newClientDto))
                 .collectList()
                 .flatMap(a -> 
                     msvcProductClient
                         .getProduct(newAdministrativeAccountDto.getProduct().getId())
-                        .flatMap(productDto -> accountRepository.save(new Account(a, productDto)))
-            );
+                        .flatMap(productDto -> accountRepository.save(new Account(a, productDto, newAdministrativeAccountDto.getBalance())))
+            ));
+    }
+
+
+    public Mono<NewAdministrativeAccountDto> validate(NewAdministrativeAccountDto newAdministrativeAccountDto) {
+        return (newAdministrativeAccountDto.getBalance() < 0) ?
+            Mono.error(() -> new RuntimeException("El saldo inicial no puede ser menor a 0")) :
+            Mono.just(newAdministrativeAccountDto);
+    }
+
+    @Override
+    public Mono<Account> findAccountById(String id) {
+        logger.info("ClientServiceImpl: findById");
+        return accountRepository.findById(id);
     }
 }

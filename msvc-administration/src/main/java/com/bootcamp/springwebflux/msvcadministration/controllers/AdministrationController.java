@@ -9,6 +9,7 @@ import com.msvc.specification.api.dto.CreditDto;
 import com.msvc.specification.api.dto.NewAdministrativeAccountDto;
 import com.msvc.specification.api.dto.NewCreditDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,7 +58,10 @@ public class AdministrationController implements AdministrativeApi {
 
     @Override
     public Mono<ResponseEntity<AdministrativeAccountDto>> findAccountById(String id, ServerWebExchange exchange) {
-        return null;
+        return administrationAccountService.findAccountById(id).map(account -> ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(administrationMapper.toAdministrativeAccountDto(account))
+        ).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @Override
@@ -77,7 +81,14 @@ public class AdministrationController implements AdministrativeApi {
 
     @Override
     public Mono<ResponseEntity<Void>> updateAccount(String id, Mono<AdministrativeAccountDto> administrativeAccountDto, ServerWebExchange exchange) {
-        return null;
+        return 
+        administrativeAccountDto.flatMap(accountDto -> 
+        administrationAccountService.findAccountById(id).flatMap(account -> {
+                account.setBalance(accountDto.getBalance());
+                return administrationAccountService.save(account).then(Mono.just(new ResponseEntity<Void>(HttpStatus.NO_CONTENT)));
+            }).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND))
+        
+        );
     }
 
     @Override
