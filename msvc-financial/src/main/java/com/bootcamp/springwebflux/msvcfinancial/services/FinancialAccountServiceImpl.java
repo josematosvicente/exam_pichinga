@@ -24,7 +24,7 @@ public class FinancialAccountServiceImpl implements FinancialAccountService {
 
     @Autowired
     private MovementRepository movementRepository;
-    
+
     @Autowired
     private MsvcAdministrativeWebClient msvcAdministrativeClient;
 
@@ -39,18 +39,16 @@ public class FinancialAccountServiceImpl implements FinancialAccountService {
             .flatMap(a -> validate(a, movement)
                 .flatMap(ac -> movementRepository.save(movement))
                 .flatMap(c-> 
-                    msvcAdministrativeClient.getAccount(id)
-                    .flatMap(acc -> {
-                            acc.setBalance(acc.getBalance() == null ? 0 : acc.getBalance());
-                            if(movement.getType().equals("DEPOSIT")){
-                                account.setBalance(acc.getBalance() + movement.getAmount());
-                            } else {
-                                account.setBalance(acc.getBalance() - movement.getAmount());
-                            }
-                            acc.setBalance(account.getBalance());
-                            return msvcAdministrativeClient.updateBalance(id, account).then(Mono.just(acc));
+                    {
+                        a.setBalance(a.getBalance() == null ? 0 : a.getBalance());
+                        if(movement.getType().equals("DEPOSIT")){
+                            account.setBalance(a.getBalance() + movement.getAmount());
+                        } else {
+                            account.setBalance(a.getBalance() - movement.getAmount());
                         }
-                    )
+                        a.setBalance(account.getBalance());
+                        return msvcAdministrativeClient.updateBalance(id, account).then(Mono.just(a));
+                    }
                 ).map(accountMap -> {
                     AccountDto accountDto = new AccountDto();
                     accountDto.setBalance(accountMap.getBalance());
