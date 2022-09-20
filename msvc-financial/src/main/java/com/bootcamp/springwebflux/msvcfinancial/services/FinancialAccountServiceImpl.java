@@ -58,7 +58,8 @@ public class FinancialAccountServiceImpl implements FinancialAccountService {
             ;
     }
 
-    public Mono<AdministrativeAccountDto> validate(AdministrativeAccountDto administrativeAccountDto, Movement movement) {
+    public Mono<AdministrativeAccountDto> validate(AdministrativeAccountDto administrativeAccountDto,
+            Movement movement) {
         return (administrativeAccountDto.getBalance() < movement.getAmount()
                 && !movement.getType().equals("DEPOSIT")) ?
             Mono.error(() -> new RuntimeException("No tiene saldo disponible para el retiro")) :
