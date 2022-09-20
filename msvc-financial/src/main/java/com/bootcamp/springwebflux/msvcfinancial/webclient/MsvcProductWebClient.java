@@ -15,7 +15,7 @@ public class MsvcProductWebClient {
 
     WebClient webclient = WebClient.create("http://localhost:8080");
 
-    public Mono<ProductDto> getProduct(String id) {
+    public final Mono<ProductDto> getProduct(String id) {
         logger.info(String.format("Calling getProduct (%s)", id));
 
         return webclient.get()
@@ -24,7 +24,7 @@ public class MsvcProductWebClient {
                 .bodyToMono(ProductDto.class);
     }
 
-    public Mono<ProductDto> postProduct(NewProductDto newProductDto) {
+    public final Mono<ProductDto> postProduct(final NewProductDto newProductDto) {
         logger.info(String.format("Calling postProduct (%s)", newProductDto));
 
         return webclient.post()

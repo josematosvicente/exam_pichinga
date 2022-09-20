@@ -16,7 +16,7 @@ public class MsvcAdministrativeWebClient {
 
     WebClient webclient = WebClient.create("http://localhost:8080");
 
-    public Mono<AdministrativeAccountDto> getAccount(String id) {
+    public final Mono<AdministrativeAccountDto> getAccount(String id) {
         logger.info(String.format("Calling getAccount (%s)", id));
 
         return webclient.get()
@@ -35,7 +35,7 @@ public class MsvcAdministrativeWebClient {
                 .bodyToMono(Void.class);
     }
 
-    public Mono<ProductDto> postProduct(NewProductDto newProductDto) {
+    public Mono<ProductDto> postProduct(final NewProductDto newProductDto) {
         logger.info(String.format("Calling postProduct (%s)", newProductDto));
 
         return webclient.post()
