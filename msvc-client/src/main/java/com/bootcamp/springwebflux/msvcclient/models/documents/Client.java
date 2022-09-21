@@ -19,4 +19,7 @@ public class Client {
     private String lastName;
     private String type;
 
+    public Client() {
+
+    }
 }

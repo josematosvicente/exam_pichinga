@@ -26,4 +26,7 @@ public class Product {
     private Double line;
     private Date createAt;
 
+    public Product() {
+
+    }
 }
