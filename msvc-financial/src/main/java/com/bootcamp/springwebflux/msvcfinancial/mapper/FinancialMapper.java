@@ -3,7 +3,6 @@ package com.bootcamp.springwebflux.msvcfinancial.mapper;
 import org.mapstruct.Mapper;
 
 import com.bootcamp.springwebflux.msvcfinancial.models.documents.Movement;
-import com.bootcamp.springwebflux.msvcfinancial.request.MovementRequest;
 import com.msvc.specification.api.dto.MovementDto;
 
 @Mapper(componentModel = "spring")
