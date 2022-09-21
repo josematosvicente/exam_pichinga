@@ -2,10 +2,8 @@ package com.bootcamp.springwebflux.msvcfinancial.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,19 +30,31 @@ public class FinancialAccountServiceImplTest {
     @Autowired
     FinancialAccountService financialAccountService;
 
+    Movement movementDeposit;
+    Movement movementCharge;
+
+    @BeforeEach
+    void setup(){
+        movementDeposit = new Movement();
+        movementDeposit.setAmount(Double.valueOf(100));
+        movementDeposit.setType("DEPOSIT");
+        movementDeposit.setId("632767dfb8cc775d5e1f5743");
+
+        movementCharge = new Movement();
+        movementCharge.setAmount(Double.valueOf(100));
+        movementCharge.setType("CHARGE");
+        movementCharge.setId("632767dfb8cc775d5e1f5743");
+
+    }
+
     @Test
     void testSave_DepositTest() {
-
-        Movement movement = new Movement();
-        movement.setAmount(Double.valueOf(100));
-        movement.setType("DEPOSIT");
-        movement.setId("632767dfb8cc775d5e1f5743");
 
         AdministrativeAccountDto administrativeAccountDto = new AdministrativeAccountDto();
         administrativeAccountDto.setBalance(Double.valueOf(150));
 
-        Mockito.when(movementRepository.save(movement))
-            .thenReturn(Mono.just(movement));
+        Mockito.when(movementRepository.save(movementDeposit))
+            .thenReturn(Mono.just(movementDeposit));
 
         Mockito.when(msvcAdministrativeClient.getAccount("1234"))
             .thenReturn(Mono.just(administrativeAccountDto));
@@ -52,7 +62,7 @@ public class FinancialAccountServiceImplTest {
         Mockito.when(msvcAdministrativeClient.updateBalance("1234", administrativeAccountDto))
             .thenReturn(Mono.empty());
 
-        Mono<AccountDto> accountDto = financialAccountService.save("1234", movement);
+        Mono<AccountDto> accountDto = financialAccountService.save("1234", movementDeposit);
         StepVerifier.create(accountDto)
             .assertNext(account -> {
                 assertEquals(Double.valueOf(250), Double.valueOf(account.getBalance()));
@@ -63,16 +73,11 @@ public class FinancialAccountServiceImplTest {
     @Test
     void testSave_ChargeTest() {
 
-        Movement movement = new Movement();
-        movement.setAmount(Double.valueOf(100));
-        movement.setType("CHARGE");
-        movement.setId("632767dfb8cc775d5e1f5743");
-
         AdministrativeAccountDto administrativeAccountDto = new AdministrativeAccountDto();
         administrativeAccountDto.setBalance(Double.valueOf(150));
 
-        Mockito.when(movementRepository.save(movement))
-            .thenReturn(Mono.just(movement));
+        Mockito.when(movementRepository.save(movementCharge))
+            .thenReturn(Mono.just(movementCharge));
 
         Mockito.when(msvcAdministrativeClient.getAccount("1234"))
             .thenReturn(Mono.just(administrativeAccountDto));
@@ -80,7 +85,7 @@ public class FinancialAccountServiceImplTest {
         Mockito.when(msvcAdministrativeClient.updateBalance("1234", administrativeAccountDto))
             .thenReturn(Mono.empty());
 
-        Mono<AccountDto> accountDto = financialAccountService.save("1234", movement);
+        Mono<AccountDto> accountDto = financialAccountService.save("1234", movementCharge);
         StepVerifier.create(accountDto)
             .assertNext(account -> {
                 assertEquals(Double.valueOf(50), Double.valueOf(account.getBalance()));
