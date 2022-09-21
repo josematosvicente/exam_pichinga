@@ -8,14 +8,27 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+/**
+ * ClientWebClient.
+ */
 @Service
 public class MsvcClientWebClient {
 
-    Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
+    /**
+     * Logger.
+     */
+    private Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
 
-    WebClient webclient = WebClient.create("http://localhost:8080");
+    /**
+     * WebClient.
+     */
+    private WebClient webclient = WebClient.create("http://localhost:8080");
 
-    public Mono<ClientDto> getClientById(String id) {
+    /**
+     * This method get Client by id.
+     * @return Client
+     */
+    public Mono<ClientDto> getClientById(final String id) {
         logger.info(String.format("Calling getClient (%s)", id));
 
         return webclient.get()
@@ -24,7 +37,11 @@ public class MsvcClientWebClient {
                 .bodyToMono(ClientDto.class);
     }
 
-    public Mono<ClientDto> postClient(NewClientDto newClientDto) {
+    /**
+     * This method update Client.
+     * @return Client
+     */
+    public Mono<ClientDto> postClient(final NewClientDto newClientDto) {
         logger.info(String.format("Calling postClient (%s)", newClientDto));
 
         return webclient.post()

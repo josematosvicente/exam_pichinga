@@ -8,14 +8,27 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+/**
+ * Service ProductWebClient.
+ */
 @Service
 public class MsvcProductWebClient {
 
+    /**
+     * Logger.
+     */
     private Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
 
-    WebClient webclient = WebClient.create("http://localhost:8080");
+    /**
+     * WebClient.
+     */
+    private WebClient webclient = WebClient.create("http://localhost:8080");
 
-    public final Mono<ProductDto> getProduct(String id) {
+    /**
+     * This method get Product.
+     * @return Product
+     */
+    public final Mono<ProductDto> getProduct(final String id) {
         logger.info(String.format("Calling getProduct (%s)", id));
 
         return webclient.get()
@@ -24,6 +37,10 @@ public class MsvcProductWebClient {
                 .bodyToMono(ProductDto.class);
     }
 
+    /**
+     * This method update Product.
+     * @return Product
+     */
     public final Mono<ProductDto> postProduct(final NewProductDto newProductDto) {
         logger.info(String.format("Calling postProduct (%s)", newProductDto));
 
