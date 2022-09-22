@@ -35,19 +35,19 @@ public class FinancialAccountServiceImpl implements FinancialAccountService {
         movement.setCreateAt(new Date());
         AdministrativeAccountDto account = new AdministrativeAccountDto();
         return Mono.just(movement)
-            .flatMap(x-> msvcAdministrativeClient.getAccount(id))
-            .flatMap(a -> validate(a, movement)
-                .flatMap(ac -> movementRepository.save(movement))
-                .flatMap(c-> 
+            .flatMap(mov-> msvcAdministrativeClient.getAccount(id))
+            .flatMap(acc -> validate(acc, movement)
+                .flatMap(acv -> movementRepository.save(movement))
+                .flatMap(bal-> 
                     {
-                        a.setBalance(a.getBalance() == null ? 0 : a.getBalance());
+                        acc.setBalance(acc.getBalance() == null ? 0 : acc.getBalance());
                         if(movement.getType().equals("DEPOSIT")){
-                            account.setBalance(a.getBalance() + movement.getAmount());
+                            account.setBalance(acc.getBalance() + movement.getAmount());
                         } else {
-                            account.setBalance(a.getBalance() - movement.getAmount());
+                            account.setBalance(acc.getBalance() - movement.getAmount());
                         }
-                        a.setBalance(account.getBalance());
-                        return msvcAdministrativeClient.updateBalance(id, account).then(Mono.just(a));
+                        acc.setBalance(account.getBalance());
+                        return msvcAdministrativeClient.updateBalance(id, account).then(Mono.just(acc));
                     }
                 ).map(accountMap -> {
                     AccountDto accountDto = new AccountDto();
@@ -59,6 +59,11 @@ public class FinancialAccountServiceImpl implements FinancialAccountService {
     }
 
     public Mono<AdministrativeAccountDto> validate(AdministrativeAccountDto administrativeAccountDto,
+            Movement movement) {
+                return validateBalance(administrativeAccountDto, movement).flatMap(val -> validateBalance(administrativeAccountDto, movement));
+            }
+
+    public Mono<AdministrativeAccountDto> validateBalance(AdministrativeAccountDto administrativeAccountDto,
             Movement movement) {
         return (administrativeAccountDto.getBalance() < movement.getAmount()
                 && !movement.getType().equals("DEPOSIT")) ?
