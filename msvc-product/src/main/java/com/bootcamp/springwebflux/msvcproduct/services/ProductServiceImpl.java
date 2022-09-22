@@ -40,4 +40,6 @@ public class ProductServiceImpl implements ProductService {
         logger.info("ProductServiceImpl: delete");
         return productRepository.delete(product);
     }
+
+
 }

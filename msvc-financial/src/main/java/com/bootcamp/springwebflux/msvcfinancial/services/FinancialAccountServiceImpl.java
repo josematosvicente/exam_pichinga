@@ -1,12 +1,10 @@
 package com.bootcamp.springwebflux.msvcfinancial.services;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Service;
 
 import com.bootcamp.springwebflux.msvcfinancial.models.documents.Movement;
@@ -17,19 +15,35 @@ import com.msvc.specification.api.dto.AdministrativeAccountDto;
 
 import reactor.core.publisher.Mono;
 
+/**
+ * FinancialAccountService.
+ */
 @Service
 public class FinancialAccountServiceImpl implements FinancialAccountService {
 
+    /**
+     * Logger.
+     */
     Logger logger = LoggerFactory.getLogger(FinancialAccountServiceImpl.class);
 
+    /**
+     * MovementRepository.
+     */
     @Autowired
     private MovementRepository movementRepository;
 
+    /**
+     * MsvcAdministrativeWebClient.
+     */
     @Autowired
     private MsvcAdministrativeWebClient msvcAdministrativeClient;
 
+    /**
+     * This method save Movement.
+     * @return AccountDto
+     */
     @Override
-    public Mono<AccountDto> save(String id, Movement movement) {
+    public Mono<AccountDto> save(final String id, final Movement movement) {
         logger.info("save(Movements getAccountId): " + id);
         movement.setAccountId(id);
         movement.setCreateAt(new Date());
@@ -54,8 +68,7 @@ public class FinancialAccountServiceImpl implements FinancialAccountService {
                     accountDto.setBalance(accountMap.getBalance());
                     return accountDto;
                 })
-            )
-            ;
+            );
     }
 
     public Mono<AdministrativeAccountDto> validate(AdministrativeAccountDto administrativeAccountDto,
@@ -66,8 +79,10 @@ public class FinancialAccountServiceImpl implements FinancialAccountService {
     public Mono<AdministrativeAccountDto> validateBalance(AdministrativeAccountDto administrativeAccountDto,
             Movement movement) {
         return (administrativeAccountDto.getBalance() < movement.getAmount()
-                && !movement.getType().equals("DEPOSIT")) ?
-            Mono.error(() -> new RuntimeException("No tiene saldo disponible para el retiro")) :
-            Mono.just(administrativeAccountDto);
+                &&
+                !movement.getType().equals("DEPOSIT")) ?
+                    Mono.error(() -> new RuntimeException("No tiene saldo disponible para el retiro"))
+                :
+                    Mono.just(administrativeAccountDto);
     }
 }

@@ -9,14 +9,27 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+/**
+ * AdministrativeWebClient.
+ */
 @Service
 public class MsvcAdministrativeWebClient {
 
-    Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
+    /**
+     * Logger.
+     */
+    private Logger logger = LoggerFactory.getLogger(MsvcProductWebClient.class);
 
-    WebClient webclient = WebClient.create("http://localhost:8080");
+    /**
+     * WebClient.
+     */
+    private WebClient webclient = WebClient.create("http://localhost:8080");
 
-    public Mono<AdministrativeAccountDto> getAccount(String id) {
+    /**
+     * This method getAccount by id.
+     * @return AdministrativeAccountDto
+     */
+    public final Mono<AdministrativeAccountDto> getAccount(final String id) {
         logger.info(String.format("Calling getAccount (%s)", id));
 
         return webclient.get()
@@ -25,7 +38,11 @@ public class MsvcAdministrativeWebClient {
                 .bodyToMono(AdministrativeAccountDto.class);
     }
 
-    public Mono<Void> updateBalance(String id, AdministrativeAccountDto account) {
+    /**
+     * This method updateBalance by AdministrativeAccountDto.
+     * @return AdministrativeAccountDto
+     */
+    public Mono<Void> updateBalance(final String id, final AdministrativeAccountDto account) {
         logger.info(String.format("Calling updateBalance (%s)", id));
 
         return webclient.put()
@@ -35,7 +52,11 @@ public class MsvcAdministrativeWebClient {
                 .bodyToMono(Void.class);
     }
 
-    public Mono<ProductDto> postProduct(NewProductDto newProductDto) {
+    /**
+     * This method save NewProductDto.
+     * @return ProductDto
+     */
+    public Mono<ProductDto> postProduct(final NewProductDto newProductDto) {
         logger.info(String.format("Calling postProduct (%s)", newProductDto));
 
         return webclient.post()
